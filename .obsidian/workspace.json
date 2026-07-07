@@ -1,0 +1,246 @@
+{
+  "main": {
+    "id": "795213d2f9488284",
+    "type": "split",
+    "children": [
+      {
+        "id": "5a8b179bb65e6078",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "e70945ef9cb882c9",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "DSA/Add Two Numbers II.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "Add Two Numbers II"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "db50f829abc1b87c",
+    "type": "split",
+    "children": [
+      {
+        "id": "76d59851f53b02d5",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "3f985c66f67aba45",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "e831b59aeb4bd7bb",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          },
+          {
+            "id": "6b35240b1160fcf1",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": true,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "byCreatedTimeReverse"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 252
+  },
+  "right": {
+    "id": "b7e3945297cba35c",
+    "type": "split",
+    "children": [
+      {
+        "id": "4683b67f57694346",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "9b51ef8ee06c7f32",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "ReadMe.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from ReadMe"
+            }
+          },
+          {
+            "id": "49d047d70da16fa9",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "7a3faeea7775df41",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "ReadMe.md",
+                "followCursor": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of ReadMe"
+            }
+          },
+          {
+            "id": "4d646b94e11fb3bd",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Financial/Financial Statement Analysis.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for Financial Statement Analysis"
+            }
+          },
+          {
+            "id": "b82aa9d37737d10a",
+            "type": "leaf",
+            "state": {
+              "type": "advanced-tables-toolbar",
+              "state": {},
+              "icon": "spreadsheet",
+              "title": "Advanced Tables"
+            }
+          },
+          {
+            "id": "b76378dec19bc129",
+            "type": "leaf",
+            "state": {
+              "type": "git-view",
+              "state": {},
+              "icon": "git-pull-request",
+              "title": "Source Control"
+            }
+          }
+        ],
+        "currentTab": 5
+      }
+    ],
+    "direction": "horizontal",
+    "width": 332.5
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "obsidian-git:Open Git source control": false,
+      "workspaces:Manage workspace layouts": false,
+      "switcher:Open quick switcher": true,
+      "graph:Open graph view": true,
+      "canvas:Create new canvas": true,
+      "omnisearch:Omnisearch": false,
+      "table-editor-obsidian:Advanced Tables Toolbar": false,
+      "command-palette:Open command palette": false,
+      "oz-clear-unused-images:Clear Unused Images": false
+    }
+  },
+  "active": "3f985c66f67aba45",
+  "lastOpenFiles": [
+    "DSA/Hard/Combination Sum.md",
+    "DSA/Unique/Regular Expression Matching.md",
+    "DSA/Subsets.md",
+    "DSA/Unique/Koko Eating Bananas.md",
+    "DSA/Kth Largest Element in an Array.md",
+    "DSA/Kth Smallest Element in a BST.md",
+    "DSA/Theory/Bits Manipulation.md",
+    "DSA/Unique/Recover Binary Search Tree.md",
+    "Complexities Practice.md",
+    "DSA/Unique/Maximum Width of Binary Tree.md",
+    "DSA/Maximum Sum BST in Binary Tree.md",
+    "DSA/Hard/Vertical Order Traversal of a Binary Tree.md",
+    "DSA/Subtree of Another Tree.md",
+    "DSA/Unique/Distribute Coins in Binary Tree.md",
+    "DSA/Path Sum II & Path Sum III.md",
+    "DSA/Theory/TRIES.md",
+    "DSA/Walls and Gates.md",
+    "Attachment Folder/Pasted image 20260705150421.png",
+    "Attachment Folder/Pasted image 20260615123307.png",
+    "DSA/Unique/Decode Ways II.md",
+    "DSA/Unique/Find Peak Element.md",
+    "DSA/Unique/Goldmine.md",
+    "DSA/Unique/Implement Trie (Prefix Tree).md",
+    "DSA/Unique/Rank Teams by Votes.md",
+    "DSA/Unique/Shuffle the Array.md",
+    "DSA/Unique/Sliding Window Maximum.md",
+    "DSA/Unique/Task Scheduler.md",
+    "DSA/Unique/Trapping Rain Water.md",
+    "Attachment Folder/Pasted image 20260612160338.png",
+    "Attachment Folder/Pasted image 20260615123210.png",
+    "Attachment Folder/Pasted image 20260705121838.png",
+    "Attachment Folder/Pasted image 20260705121833.png",
+    "Attachment Folder/Pasted image 20260705121827.png",
+    "Attachment Folder/Pasted image 20260705121821.png",
+    "Attachment Folder/Pasted image 20260705121814.png",
+    "Attachment Folder/Pasted image 20260705121806.png",
+    "DSA/Unique",
+    "Attachment Folder 1",
+    "DSA/Hard",
+    "DSA/Theory",
+    "Attachment Folder/Consistence Vol..mov",
+    "DSA(Tutort)",
+    "CFA/Quant",
+    "CFA",
+    "Financial/Introduction",
+    "Financial",
+    "C++/Untitled.canvas",
+    "Untitled.canvas"
+  ]
+}

@@ -1,0 +1,98 @@
+# [888. Fair Candy Swap](https://leetcode.com/problems/fair-candy-swap/)
+
+Alice and Bob have a different total number of candies. You are given two integer arrays `aliceSizes` and `bobSizes` where `aliceSizes[i]` is the number of candies of the `ith` box of candy that Alice has and `bobSizes[j]` is the number of candies of the `jth` box of candy that Bob has.
+
+Since they are friends, they would like to exchange one candy box each so that after the exchange, they both have the same total amount of candy. The total amount of candy a person has is the sum of the number of candies in each box they have.
+
+Return a_n integer array_ `answer` _where_ `answer[0]` _is the number of candies in the box that Alice must exchange, and_ `answer[1]` _is the number of candies in the box that Bob must exchange_. If there are multiple answers, you may **return any** one of them. It is guaranteed that at least one answer exists.
+
+**Example 1:**
+
+**Input:** aliceSizes = [1,1], bobSizes = [2,2]
+**Output:** [1,2]
+
+**Example 2:**
+
+**Input:** aliceSizes = [1,2], bobSizes = [2,3]
+**Output:** [1,2]
+
+**Example 3:**
+
+**Input:** aliceSizes = [2], bobSizes = [1,3]
+**Output:** [2,3]
+
+**Constraints:**
+
+- `1 <= aliceSizes.length, bobSizes.length <= 104`
+- `1 <= aliceSizes[i], bobSizes[j] <= 105`
+- Alice and Bob have a different total number of candies.
+- There will be at least one valid answer for the given input.
+
+```cpp
+class Solution {
+public:
+    vector<int> fairCandySwap(vector<int>& aliceSizes, vector<int>& bobSizes) {
+        
+    }
+};
+```
+# Solution 1: Two Pointers
+
+## CODE (Mine)
+
+```cpp
+class Solution {
+public:
+    vector<int> fairCandySwap(vector<int>& aliceSizes, vector<int>& bobSizes)
+    {   sort(aliceSizes.begin(),aliceSizes.end());
+        sort(bobSizes.begin(),bobSizes.end());
+        int sum=0;
+        for(int &i:aliceSizes){
+            sum+=i;
+        }
+        for(int &i:bobSizes){
+            sum-=i;
+        }
+        int i=0,j=0;
+        while(aliceSizes[i]-bobSizes[j]!=sum/2){
+            if(aliceSizes[i]-bobSizes[j]<sum/2){
+                i++;
+            }
+            if(aliceSizes[i]-bobSizes[j]>sum/2){
+                j++;
+            }
+        }
+        return {aliceSizes[i],bobSizes[j]};
+    }
+};
+```
+
+## Complexity
+
+- Time complexity:  
+    O(mlogm + nlogn) - m is length of array from alice, and n is length of array from bob
+    
+- Space complexity:  
+    O(1) 
+# Solution 2: Set
+
+Calculate `dif = (sum(A) - sum(B)) / 2`  
+We want find a pair `(a, b)` with `a = b + dif`
+## CODE (Optimized)
+
+```cpp
+    vector<int> fairCandySwap(vector<int> A, vector<int> B) {
+        int dif = (accumulate(A.begin(), A.end(), 0) - accumulate(B.begin(), B.end(), 0)) / 2;
+        unordered_set<int> S(A.begin(), A.end());
+        for (int b: B)
+            if (S.count(b + dif))
+                return {b + dif, b};
+    }
+```
+## Complexity
+
+- Time complexity:  
+    O(m + n) - m is length of array from alice, and n is length of array from bob
+    
+- Space complexity:  
+    O(m) - For storing the target pairs from alice array, m is the length fo the array from alice
