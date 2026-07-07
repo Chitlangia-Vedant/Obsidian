@@ -13,13 +13,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "DSA/Add Two Numbers II.md",
+                "file": "C++/EXTRA.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "Add Two Numbers II"
+              "title": "EXTRA"
             }
           }
         ]
@@ -95,12 +95,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "ReadMe.md",
+                "file": "C++/EXTRA.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from ReadMe"
+              "title": "Outgoing links from EXTRA"
             }
           },
           {
@@ -124,13 +124,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "ReadMe.md",
+                "file": "C++/EXTRA.md",
                 "followCursor": true,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of ReadMe"
+              "title": "Outline of EXTRA"
             }
           },
           {
@@ -139,7 +139,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Financial/Financial Statement Analysis.md",
+                "file": "C++/EXTRA.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -149,7 +149,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for Financial Statement Analysis"
+              "title": "Backlinks for EXTRA"
             }
           },
           {
@@ -177,7 +177,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 332.5
+    "width": 411.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -192,8 +192,9 @@
       "oz-clear-unused-images:Clear Unused Images": false
     }
   },
-  "active": "3f985c66f67aba45",
+  "active": "e70945ef9cb882c9",
   "lastOpenFiles": [
+    "DSA/Add Two Numbers II.md",
     "DSA/Hard/Combination Sum.md",
     "DSA/Unique/Regular Expression Matching.md",
     "DSA/Subsets.md",
@@ -221,7 +222,6 @@
     "DSA/Unique/Shuffle the Array.md",
     "DSA/Unique/Sliding Window Maximum.md",
     "DSA/Unique/Task Scheduler.md",
-    "DSA/Unique/Trapping Rain Water.md",
     "Attachment Folder/Pasted image 20260612160338.png",
     "Attachment Folder/Pasted image 20260615123210.png",
     "Attachment Folder/Pasted image 20260705121838.png",
