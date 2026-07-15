@@ -104,3 +104,32 @@ private void backtrack(List<List<Integer>> ans, List<Integer> tempList, int[] ar
 
 TC: O(2^N)
 SC: O(N) - Recursion Stack
+
+# CODE (Mine)
+
+```cpp
+class Solution {
+public:
+    vector<int> candidates;
+    vector<vector<int>> ans;
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+        this->candidates=candidates;
+        vector<int> combination={};
+        solve(0,target,combination);
+        
+        return ans;
+    }
+    void solve(int i,int target, vector<int> combination){
+        if(target==0){
+            ans.push_back(combination);
+            return;
+        }
+        if(target<0||i>=candidates.size()){
+            return;
+        }
+        solve(i+1,target,combination);
+        combination.push_back(candidates[i]);
+        solve(i,target-candidates[i],combination);
+    }
+};
+```
