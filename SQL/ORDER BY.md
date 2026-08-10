@@ -1,0 +1,69 @@
+**The `ORDER BY` keyword is used to sort the result-set in ascending or descending order.**
+
+The `ORDER BY` keyword sorts the result-set in ascending order (ASC) by default.
+### Example
+Sort the products from lowest to highest price:
+
+```
+SELECT * FROM Products  
+ORDER BY Price;
+```
+## ORDER BY Syntax
+
+```
+SELECT column1, column2, ...   
+FROM table_name   
+ORDER BY column1, column2, ... ASC|DESC;
+```
+
+## ORDER BY DESC
+ To sort the records in descending order, use the `DESC` keyword.
+### Example
+Sort the products from highest to lowest price:
+
+```
+SELECT * FROM Products  
+ORDER BY Price DESC;
+```
+
+## Order Alphabetically
+For string values, the `ORDER BY` keyword will sort the values in the column alphabetically:
+### Example
+Sort the ProductName column in alphabetically order:
+
+```
+SELECT * FROM Products  
+ORDER BY ProductName;
+```
+## Alphabetically DESC
+
+To sort the text values in a column in a descending order, use the `DESC` keyword:
+### Example
+Sort the ProductName column in descending alphabetically order:
+
+```
+SELECT * FROM Products  
+ORDER BY ProductName DESC;
+```
+
+## ORDER BY Several Columns
+
+The following SQL statement selects all customers from the "Customers" table - and sorts it by the "Country" and the "CustomerName" column.
+
+This means that it sorts it first by Country, and if some records have the same Country, it sorts them by CustomerName:
+### Example
+
+```
+SELECT * FROM Customers  
+ORDER BY Country, CustomerName;
+```
+
+## Combine ASC and DESC
+
+The following SQL statement selects all customers from the "Customers" table, and sorts it ASCENDING by the "Country" and DESCENDING by the "CustomerName" column:
+### Example
+
+```
+SELECT * FROM Customers  
+ORDER BY Country ASC, CustomerName DESC;
+```
