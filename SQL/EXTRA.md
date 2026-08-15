@@ -28,4 +28,4 @@ You can also use:
 SUM(rating < 3) AS low_ratings
 
 because MySQL treats `TRUE` as `1` and `FALSE` as `0`.
-#
+# SUM OVER/ AVG OVER
