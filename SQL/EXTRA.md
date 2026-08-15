@@ -77,3 +77,4 @@ location_count = 1
 Your original solution is completely fine, though. For LeetCode, I'd consider it a **clean and standard solution**.
 
 # DENSE_RANK()
+# GROUP_CONCATE()
