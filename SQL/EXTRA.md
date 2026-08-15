@@ -78,3 +78,4 @@ Your original solution is completely fine, though. For LeetCode, I'd consider it
 
 # DENSE_RANK()
 # GROUP_CONCATE()
+# REGEXP
