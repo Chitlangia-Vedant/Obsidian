@@ -1,5 +1,6 @@
-# DATE_SUB
-# DATEDIFF
+# DATE_SUB (DATE STUFF)
+# DATEDIFF (DATE STUFF)
+# STRING STUFF
 # ROUND
 # COALESCE
 # 
@@ -79,3 +80,16 @@ Your original solution is completely fine, though. For LeetCode, I'd consider it
 # DENSE_RANK()
 # GROUP_CONCATE()
 # REGEXP
+
+# 
+WITH RECURSIVE triangle AS (
+    SELECT 20 AS n
+
+    UNION ALL
+
+    SELECT n - 1
+    FROM triangle
+    WHERE n > 1
+)
+SELECT REPEAT('* ', n)
+FROM triangle;
