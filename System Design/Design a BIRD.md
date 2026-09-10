@@ -222,6 +222,7 @@ for(Bird b:birds){
 }
 ```
 
+**Violates [[01. SOLID Design Principle#Liskov's Substitution Principle|LSP]]**
 ### Version 2
 ```python
 List<Flying> birds;
