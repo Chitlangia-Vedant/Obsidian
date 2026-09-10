@@ -195,8 +195,8 @@ Dance <|-- Sparrow
 Dance <|-- Kiwi
 ```
 
-```python
-class Sparrow extends Bird implement Flying,Dance{
+```java
+class Sparrow extends Bird implements Flying,Dance{
 	makeSound(){
 		......
 	}
@@ -211,7 +211,8 @@ class Sparrow extends Bird implement Flying,Dance{
 
 ## Make birds fly
 
-### Version 1
+### Version 1: **Violates [[01. SOLID Design Principle#Liskov's Substitution Principle|LSP]]**
+
 ```python
 List<Bird> birds;
 for(Bird b:birds){
@@ -222,8 +223,8 @@ for(Bird b:birds){
 }
 ```
 
-**Violates [[01. SOLID Design Principle#Liskov's Substitution Principle|LSP]]**
 ### Version 2
+
 ```python
 List<Flying> birds;
 for(Flying b:birds){
@@ -231,3 +232,61 @@ for(Flying b:birds){
 }
 ```
 
+## Requirement (In addition to V2 of Bird)
+
+- `Pigeon` and `Sparrow` fly in same way
+- `Crow` and `Owl` fly in same way 
+### Solution 1 (to remove Code Duplication): Violates [[01. SOLID Design Principle#Dependency Inversion Principle (DIP)|DIP]]
+
+```mermaid
+classDiagram
+class PS_FlyBehavior{
+	+flyBehavior()
+}
+class CO_FlyBehavior{
+	+flyBehavior()
+}
+```
+
+```java
+Pigeon extends Birds implements Flying{
+	PS_FlyBehavior psfb= new PS_FlyBehavior();
+	fly(){
+		psfb.flyBehaviour();
+	}
+}
+```
+
+#### Problem 
+
+`Pigeon` is tightly coupled with how `PS_FlyBehavior` behaves.
+If we have to change the `FlyBehavior` of `Pigeon` to `CO_FlyBehavior`
+Then we will need to rewrite the code
+
+`Pigeon` is depended on implementation `PS_FlyBehavior` -> Violation of [[01. SOLID Design Principle#Dependency Inversion Principle (DIP)|DIP]]
+### Solution 2
+
+```mermaid
+classDiagram
+class FlyBehavior{
+	<<interface>>
+	+flyBehavior()
+}
+class PS_FlyBehavior{
+	+flyBehavior()
+}
+class CO_FlyBehavior{
+	+flyBehavior()
+}
+FlyBehavior<|--PS_FlyBehavior
+FlyBehavior<|--CO_FlyBehavior
+```
+
+```java
+Pigeon extends Birds implements Flying{
+	FlyBehavior fb= new PS_FlyBehavior();
+	fly(){
+		fb.flyBehaviour();
+	}
+}
+```
