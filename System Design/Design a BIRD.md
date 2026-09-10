@@ -4,3 +4,13 @@ Information
 	-  Properties
 	-  Behavior
 
+```mermaid
+classDiagram 
+class Duck{
+            +String beakColor
+            +swim()
+            +quack()
+        }
+
+```
+
