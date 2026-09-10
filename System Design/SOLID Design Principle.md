@@ -12,3 +12,6 @@ A S/W system is considered better based on the following factors:
 - Scalability
 - Modularity
 - Reusability
+
+# Single Responsibility Principle
+
