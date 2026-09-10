@@ -198,13 +198,13 @@ Dance <|-- Kiwi
 ```java
 class Sparrow extends Bird implements Flying,Dance{
 	makeSound(){
-		......
+		...
 	}
 	fly(){
-		......
+		...
 	}
 	dance(){
-		......
+		...
 	}
 }
 ```
@@ -236,7 +236,9 @@ for(Flying b:birds){
 
 - `Pigeon` and `Sparrow` fly in same way
 - `Crow` and `Owl` fly in same way 
-### Solution 1 (to remove Code Duplication): Violates [[01. SOLID Design Principle#Dependency Inversion Principle (DIP)|DIP]]
+
+**We have to remove code duplication**
+### Solution 1: Violates [[01. SOLID Design Principle#Dependency Inversion Principle (DIP)|DIP]]
 
 ```mermaid
 classDiagram
@@ -287,6 +289,29 @@ Pigeon extends Birds implements Flying{
 	FlyBehavior fb= new PS_FlyBehavior();
 	fly(){
 		fb.flyBehaviour();
+	}
+}
+```
+
+We can change the `FlyBehavior` at runtime 
+
+```java
+Pigeon extends Birds implements Flying{
+	FlyBehavior fb= new PS_FlyBehavior();
+	changeFB(FlyBehavior fb){
+		this.fb=fb;
+	}
+	fly(){
+		fb.flyBehaviour();
+	}
+}
+
+public class Program{
+	public static int main(String[] args){
+		Flyable b=new Pigeon();
+		b.fly(); //PS_FlyBehavior
+		b.changeFB(new CO_FlyBehavior());
+		b.fly(); //CO_FlyBehavior
 	}
 }
 ```
