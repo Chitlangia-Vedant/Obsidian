@@ -80,7 +80,7 @@ Ways to implement this
 2. print "Penguin can't fly."
 3. throw exception
 
-### Solution 2 (Ideal)
+### Solution 2 (Ideal): Version 1.5
 
 If an entity doesn't support a behavior, it should not have a method to do the behavior.
 
@@ -89,39 +89,144 @@ classDiagram
 class Bird{
 			<<abstract>>
         }
-class FlyingBird{
+class Flying{
 			<<abstract>>
             -fly()*
+        }
+class NonFlying{
+			<<abstract>>
         }
 class Crow{
             -fly()
         }
-Bird <|-- FlyingBird
-Bird <|-- NonFlyingBird
-FlyingBird <|-- Crow 
-NonFlyingBird <|-- Penguin
+Bird <|-- Flying
+Bird <|-- NonFlying
+Flying <|-- Crow 
+NonFlying <|-- Penguin
 ```
-# Version 2
+## Requirement: Bird which can't fly+dance
 
 ```mermaid
 classDiagram 
-class Bird{
+class Flying_Dance{
+			<<abstract>>
+            -fly()*
+            -dance()*
+        }
+class Flying_NonDance{
+			<<abstract>>
+            -fly()*
+        }
+class NonFlying_Dance{
+			<<abstract>>
+            -dance()*
+        }
+class NonFlying_NonDance{
 			<<abstract>>
         }
-class Flying{
-			<<interface>>
-            -fly()
-        }
-class Dance{
-			<<interface>>
-            -dance()
-        }
-Bird<|--Crow
-Bird<|--Sparrow
-Bird<|--Owl
-Bird<|--Penguin
-Flying <|-- Crow 
-Flying <|-- Sparrow 
-Dance <|-- Crow
-Dance <|-- Owl
+Bird <|-- Flying_Dance
+Bird <|-- NonFlying_Dance
+Bird <|-- Flying_NonDance 
+Bird <|-- NonFlying_NonDance 
 ```
+### Problems
+- Class Explosion (Too many class)
+- How to get list of all the flying bird?
+# Version 2
+
+## Problem
+
+Some bird demonstrate a behavior while other birds don't demonstrate that behavior 
+1. Only the birds having that behavior should have that method
+2. Should be able to create a list of bird that have a particular behavior
+
+```mermaid
+classDiagram
+
+class Bird{
+    <<abstract>>
+    -eat()
+    -makeSound()*
+}
+
+class Flying{
+    <<interface>>
+    -fly()
+}
+
+class Dance{
+    <<interface>>
+    -dance()
+}
+
+class Crow{
+    
+    +makeSound()
+    +fly()
+}
+
+class Sparrow{
+    
+    +makeSound()
+    +fly()
+    +dance()
+}
+
+class Kiwi{
+    
+    +makeSound()
+    +dance()
+}
+
+class Penguin{
+    
+    +makeSound()
+}
+
+Bird <|-- Crow
+Bird <|-- Sparrow
+Bird <|-- Kiwi
+Bird <|-- Penguin
+
+Flying <|-- Crow
+Flying <|-- Sparrow
+
+Dance <|-- Sparrow
+Dance <|-- Kiwi
+```
+
+```python
+class Sparrow extends Bird implement Flying,Dance{
+	makeSound(){
+		......
+	}
+	fly(){
+		......
+	}
+	dance(){
+		......
+	}
+}
+```
+
+## Make birds fly
+
+### Version 1
+```python
+List<Bird> birds;
+for(Bird b:birds){
+	try{
+		b.fly(); #Runtime exception if b is Penguin
+	}catch(){
+	}
+}
+```
+
+### Version 2
+```python
+List<Flying> birds;
+for(Flying b:birds){
+	b.fly();
+}
+```
+
