@@ -88,7 +88,6 @@ If an entity doesn't support a behavior, it should not have a method to do the b
 classDiagram 
 class Bird{
 			<<abstract>>
-            -fly()*
         }
 class FlyingBird{
 			<<abstract>>
@@ -101,4 +100,28 @@ Bird <|-- FlyingBird
 Bird <|-- NonFlyingBird
 FlyingBird <|-- Crow 
 NonFlyingBird <|-- Penguin
+```
+# Version 2
+
+```mermaid
+classDiagram 
+class Bird{
+			<<abstract>>
+        }
+class Flying{
+			<<interface>>
+            -fly()
+        }
+class Dance{
+			<<interface>>
+            -dance()
+        }
+Bird<|--Crow
+Bird<|--Sparrow
+Bird<|--Owl
+Bird<|--Penguin
+Flying <|-- Crow 
+Flying <|-- Sparrow 
+Dance <|-- Crow
+Dance <|-- Owl
 ```
