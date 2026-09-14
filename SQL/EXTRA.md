@@ -14,7 +14,6 @@ SUM(rating < 3)
 SELECT
 
     COUNT(*) AS total,
-
     COUNT(CASE WHEN rating < 3 THEN 1 END) AS low_ratings
 
 FROM Reviews;
@@ -62,8 +61,6 @@ COUNT(*) OVER (PARTITION BY lat, lon)
 
 How many policies have this location?
 
-  
-
 tiv_count > 1
 
         AND
@@ -73,7 +70,6 @@ location_count = 1
 Your original solution is completely fine, though. For LeetCode, I'd consider it a **clean and standard solution**.
 
 # GROUP_CONCATE()
-# REGEXP
 
 # 
 WITH RECURSIVE triangle AS (
