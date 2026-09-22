@@ -1,2 +1,3 @@
 - [09. High Level Design](System%20Design/09.%20High%20Level%20Design.md)
 	- [~] Addition/Deletion of shard (machine) should be fast
+	- [~] Uniform distribution of data
