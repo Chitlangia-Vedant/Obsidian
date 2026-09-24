@@ -751,9 +751,9 @@ Now let’s take a look at our 2d array layout in C++:
 // [2][0]  [2][1]  [2][2]  [2][3]  [2][4]  row 2
 ```
 
-This is also a two-dimensional coordinate system, where the position of an element can be described as [row][col] (where the col-axis is flipped).
+This is also a two-dimensional coordinate system, where the position of an element can be described as `[row][col]` (where the col-axis is flipped).
 
-While each of these coordinate systems is fairly easy to understand independently, converting from Cartesian { x, y } to Array indices [row][col] is a bit counter-intuitive.
+While each of these coordinate systems is fairly easy to understand independently, converting from Cartesian { x, y } to Array indices `[row][col]` is a bit counter-intuitive.
 
 The key insight is that the x-coordinate in a Cartesian system describes which _column_ is being selected in the array indexing system. Conversely, the y-coordinate describes which _row_ is being selected. Therefore, an { x, y } Cartesian coordinate translates to an [y][x] array coordinate, which is backwards from what we might expect!
 
