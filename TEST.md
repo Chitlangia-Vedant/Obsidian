@@ -1,0 +1,23 @@
+- [ ] To-do
+- [/] Incomplete
+- [x] Done
+- [-] Canceled
+- [>] Forwarded
+- [<] Scheduling
+- [?] Question
+- [!] Important
+- [*] Star
+- ["] Quote
+- [l] Location
+- [b] Bookmark
+- [i] Information
+- [S] Savings
+- [I] Idea
+- [p] Pros
+- [c] Cons
+- [f] Fire
+- [k] Key
+- [w] Win
+- [u] Up
+- [d] Down
+- [~] Crossed
