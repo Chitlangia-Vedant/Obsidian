@@ -30,7 +30,7 @@ Given the `head` of a linked list, return _the list after sorting it in **as
 
 # Solution : Merge Sort
 
-Uses [[Merge Two Sorted Lists]]
+Uses [Merge Two Sorted Lists](<./Merge Two Sorted Lists.md>)
 
 ```cpp
 /**

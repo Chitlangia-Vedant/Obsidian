@@ -81,7 +81,7 @@ class Solution:
 
 1. Store the `nums1` value as key and respective index as value in a Map `mp`
 2. Iterate the `nums2` in reverse and for every `nums1` value in `nums2` calculate the nge
-	- [[Next Greater Element]]
+	- [Next Greater Element](<./Next Greater Element.md>)
 
 ```cpp
 class Solution {

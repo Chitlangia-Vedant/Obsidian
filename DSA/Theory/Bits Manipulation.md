@@ -227,7 +227,7 @@ You can use bit manipulation to check if a number is even or odd by examining it
 def is_even(num):     return (num & 1) == 0  # Check if LSB is 0 (even)
 ```
 
-![[Pasted image 20260702185452.png]]
+![](<../../Attachment Folder/Pasted image 20260702185452.png>)
 
 ## **Example 2: Counting the number of set bits**
 
@@ -237,7 +237,7 @@ To count the number of 1s (set bits) in the binary representation of a number:
 def count_set_bits(n):     count = 0     while n:        count += n & 1  # Increment count if LSB is 1         n >>= 1         # Right shift to check the next bit     return count
 ```
 
-![[Pasted image 20260702185445.png]]
+![](<../../Attachment Folder/Pasted image 20260702185445.png>)
 
 You can optimize set bit counting using **Brian Kernighan’s Algorithm**, which runs in `O(k)` time, where `k` is the number of set bits. The idea is to repeatedly turn off the rightmost 1 in the binary representation of a number with `n & (n - 1)` until `n` becomes zero. Each operation removes one set bit, making it more efficient than checking every bit.
 

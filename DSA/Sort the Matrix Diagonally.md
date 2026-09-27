@@ -108,7 +108,7 @@ public:
 3. Put values back
 
 Here's an example to show how the code works:  
-![[Pasted image 20260612160338.png]]
+![](<../Attachment Folder/Pasted image 20260612160338.png>)
 
 ## CODE
 ```cpp

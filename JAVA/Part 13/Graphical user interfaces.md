@@ -21,7 +21,7 @@ public class JavaFxApplication extends Application {
 ```
 
 When the program is launched, it looks as follows.
-![[Pasted image 20260223143004.png]]
+![](<../../Attachment Folder/Pasted image 20260223143004.png>)
 
 How the above program works:
 1. When the `launch` method is called, the method of the Application class creates a new object from the given class (here `JavaFxApplication`) and calls its `init` method. 
@@ -70,7 +70,7 @@ public class JavaFxApplication extends Application {
 ```
 
 The application looks like this.
-![[Pasted image 20260223144347.png]]
+![](<../../Attachment Folder/Pasted image 20260223144347.png>)
 
 UI components are added as "children" to the object responsible for setting them — `FlowPane`. 
 This has to do with a `JavaFx` design decision, whereby each object responsible for UI components may contain other objects responsible for UI components as well as actual UI components.

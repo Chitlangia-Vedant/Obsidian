@@ -113,7 +113,7 @@ You can find a list of the available UI components on [https://docs.oracle.com/
 With `FlowPane`, components that you add to the interface are placed side-by-side. 
 If the size of Window is reduced so that the components no longer fit next to each other, the components will be automatically aligned.
 
-![[Pasted image 20260223170521.png]]
+![](<../../Attachment Folder/Pasted image 20260223170521.png>)
 The application has been narrowed so that the components are automatically aligned.
 
 ## BorderPane
@@ -151,5 +151,5 @@ public class JavaFxSovellus extends Application {
 }
 ```
 
-![[Pasted image 20260223171355.png]]
+![](<../../Attachment Folder/Pasted image 20260223171355.png>)
 

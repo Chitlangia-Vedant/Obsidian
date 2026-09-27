@@ -1,4 +1,4 @@
-[Test-driven development](https://en.wikipedia.org/wiki/Test-driven_development) is a software development process that's based on constructing a piece of software in small iterations. In test-driven software development, the first thing a programmer always does is write an [[Introduction to Testing#Unit Testing|automatically-executable test]], which tests a single piece of the computer program.
+[Test-driven development](https://en.wikipedia.org/wiki/Test-driven_development) is a software development process that's based on constructing a piece of software in small iterations. In test-driven software development, the first thing a programmer always does is write an [automatically-executable test](<./Introduction to Testing.md#Unit Testing>), which tests a single piece of the computer program.
 
 The test will not pass because the functionality that satisfies the test, i.e., the part of the computer program to be examined, is missing. Once the test has been written, functionality that meets the test requirements is added to the program. The tests are then run again. If all tests pass, a new test is added, or alternatively, if the tests fail, the already-written program is corrected. If necessary, the internal structure of the program will be corrected or refactored, so that the functionality of the program remains the same, but the structure becomes clearer.
 
@@ -10,7 +10,7 @@ Test-driven software development consists of five steps that are repeated until 
 4. Perform the tests. If the tests fail, there is likely to be an error in the functionality written. Correct the functionality - or, if there is no error in the functionality, fix the latest test that was performed.
 5. Repair the internal structure of the program. As the size of the program increases, its internal structure is adjusted as needed. Methods that are too long are broken down into multiple parts and classes representing concepts are isolated. The tests are not modified, but are instead used to verify the correctness of the changes made to the program's internal structure - if a change in the program structure changes the functionality of the program, the tests will produce a warning and the programmer can remedy the situation.
 
-![[Pasted image 20241021211127.png]]
+![](<../../Attachment Folder/Pasted image 20241021211127.png>)
 
 # Example: exercise management
 
@@ -23,7 +23,7 @@ Now we get to fill in the information for our new project. Set the project name 
 
 Keep the package field empty.
 
-![[Pasted image 20241022121656.png]]
+![](<../../Attachment Folder/Pasted image 20241022121656.png>)
 
 When we press Finish, the new project is created. You can view it on the left side of NetBeans.
 
@@ -52,7 +52,7 @@ test
 </dependencies>
 ```
 
-![[Pasted image 20241022122103.png]]
+![](<../../Attachment Folder/Pasted image 20241022122103.png>)
 
 ## Part 2. Creating the class for unit tests
 
@@ -62,7 +62,7 @@ This opens a view for creating a new file. Choose the category as “Unit Tests�
 
 Then press “Next”.
 
-![[Pasted image 20241022122546.png]]
+![](<../../Attachment Folder/Pasted image 20241022122546.png>)
 
 Set the class name as ‘ExerciseManagementTest’ and choose not to generate code in the class.
 
@@ -70,13 +70,13 @@ Ensure that the class name ends with “Test”.
 
 Press Finish when ready.
 
-![[Pasted image 20241022122748.png]]
+![](<../../Attachment Folder/Pasted image 20241022122748.png>)
 
 Now the project folder “Test Packages” contains the class “ExerciseManagementTest”
 
-![[Pasted image 20241022122835.png]]
+![](<../../Attachment Folder/Pasted image 20241022122835.png>)
 
-## Part 3. [[Introduction to Testing#Unit Testing|Unit test]]
+## Part 3. [Unit test](<./Introduction to Testing.md#Unit Testing>)
 
 The test uses a class called ExerciseManagement, and expects it to have a method called exerciseList that returns the list of exercises.
 
@@ -106,7 +106,7 @@ Nevertheless, let’s run the tests. This is done by right-clicking on the proje
 
 We notice the error “Failed to execute...”
 
-![[Pasted image 20241022123746.png]]
+![](<../../Attachment Folder/Pasted image 20241022123746.png>)
 
 ## Part 4. Implementing the functionality that is required by the unit tests
 
@@ -126,7 +126,7 @@ Run the tests by right-clicking on the project  and choosing “Test”.
 
 The tests pass. There is no refactoring, so we’ll continue and write the next test.
 
-![[Pasted image 20241022124301.png]]
+![](<../../Attachment Folder/Pasted image 20241022124301.png>)
 
 ## Summary
 

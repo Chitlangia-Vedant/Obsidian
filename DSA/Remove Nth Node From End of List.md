@@ -48,7 +48,7 @@ class Solution {
 
 # Solution:
 
-[[#(2) Very Good Developer Approach|Two Pointer/Hare and Tortoise/Fast and Slow Pointers Approach]]
+[Two Pointer/Hare and Tortoise/Fast and Slow Pointers Approach](<#(2) Very Good Developer Approach>)
 
 ```Java
 class Solution {

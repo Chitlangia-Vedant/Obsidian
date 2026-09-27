@@ -116,7 +116,7 @@ The starting point
 - (4) can be used to map values ​​in a stream from one form to another. The `collect` method 
 - (5) collects the values ​​in a stream into a collection provided to it, such as a list.
 
-![[Pasted image 20260220170348.png]]
+![](<../../Attachment Folder/Pasted image 20260220170348.png>)
 
 ```java
 List<Integer> list = new ArrayList<>();

@@ -7,15 +7,15 @@ To do that, you need to take the big machines  that farmers currently rely on a
 
 # Smarter farm machine
 
-![[Pasted image 20240917191008.png]]
+![](<../Attachment Folder/Pasted image 20240917191008.png>)
 
 ## Self Driving Tractor
 
 In theory, you could have one farmer running a bunch of Farm Roombas  just on their phone and they can create these detailed routes to hit every part of a field  using precise GPS.
 
-![[Pasted image 20240917191520.png]]
+![](<../Attachment Folder/Pasted image 20240917191520.png>)
 
-![[Pasted image 20240917191526.png]]
+![](<../Attachment Folder/Pasted image 20240917191526.png>)
 
 This technology is unlocking what's called "precision agriculture," letting AI  and ultra-precise GPS generate a path around  the field.
 
@@ -25,10 +25,10 @@ That means more food because farmers can reduce  dead spots, pieces of the field
 
 John Deere Exactemerge 
 
-![[Pasted image 20240917192730.png]]
+![](<../Attachment Folder/Pasted image 20240917192730.png>)
 
 Seeds are taken up one by one into a   belt brush, scanned with a sensor dropped into the  ground, and then recorded with the camera and a   laser to make sure it's planted just right.
 
 The  machine gives farmers extremely precise control   so they can decide how far apart each seed is  so the plants don't compete with each other for   resources and how deep they get planted so they  know that they'll get enough moisture.
 
-![[Pasted image 20240917193847.png]]
+![](<../Attachment Folder/Pasted image 20240917193847.png>)

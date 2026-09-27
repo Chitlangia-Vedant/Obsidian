@@ -31,7 +31,7 @@ def cyclic_sort(nums):
     return nums
 ```
 
-![[Pasted image 20260702190353.png]]
+![](<../../Attachment Folder/Pasted image 20260702190353.png>)
 
 # Example 2: Find the smallest missing positive number
 
@@ -60,4 +60,4 @@ def find_smallest_missing_positive(nums):
     return n + 1
 ```
 
-![[Pasted image 20260702190457.png]]
+![](<../../Attachment Folder/Pasted image 20260702190457.png>)

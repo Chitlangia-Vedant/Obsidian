@@ -30,15 +30,15 @@ In a tiling, every square must be covered by a tile. Two tilings are different i
 - dp[i] denotes the number of ways to tile an 2 * (i + 1) board, note that dp is 0-indexed.
     - Intuitively, dp[0] = 1 and dp[1] = 2
 
-![[Pasted image 20260714134934.png]]
+![](<../Attachment Folder/Pasted image 20260714134934.png>)
 - dpa[i] denotes the number of ways to tile an 2 * i board and 1 more square left below(or above symmetrically).
     - Intuitively, dpa[0] = 0 and dpa[1] = 1
     - I just explained the case where in i-th column, 2nd row is filled. But it should be noted that the two cases(the other is in i-th column, 1st row is filled) are symmetric and the numbers are both dpa[i], you may imagine dpb[i] = dpa[i] for the second case where i-th column 1st row is filled. 
  
-![[Pasted image 20260714134949.png]]
+![](<../Attachment Folder/Pasted image 20260714134949.png>)
 
 Further More!
-![[Pasted image 20260714135112.png]]
+![](<../Attachment Folder/Pasted image 20260714135112.png>)
 
 # CODE
 ```cpp

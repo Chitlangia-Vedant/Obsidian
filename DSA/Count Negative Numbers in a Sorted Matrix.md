@@ -45,7 +45,7 @@ public:
 - The number to be taken is in this case would be the right top most because it will be the lowest for both rows and columns. Thus, easier to compare.
 - We calculate the number of rows and columns present and initiate a counter and two variables for row from first row and column from last column.  
 
-![[Pasted image 20260615123218.png]]
+![](<../Attachment Folder/Pasted image 20260615123218.png>)
 
 - Now, we parse through the matrix with the breaking conditions of the while loop being the row counter to be less than row length and column counter to be bigger than or equal to zero.
 - We take the element and compare it to zero, now as we are on the first row and last column. The element would be the biggest in it's column and smallest in it's row.
@@ -55,14 +55,14 @@ public:
 
 Here's the rest of visual explanation
 
-![[Pasted image 20260615123241.png]]
-![[Pasted image 20260615123254.png]]
-![[Pasted image 20260615123307.png]]
-![[Pasted image 20260615123326.png]]
-![[Pasted image 20260615123352.png]]
-![[Pasted image 20260615123452.png]]
-![[Pasted image 20260615123427.png]]
-![[Pasted image 20260615123411.png]]
+![](<../Attachment Folder/Pasted image 20260615123241.png>)
+![](<../Attachment Folder/Pasted image 20260615123254.png>)
+![](<../Attachment Folder/Pasted image 20260615123307.png>)
+![](<../Attachment Folder/Pasted image 20260615123326.png>)
+![](<../Attachment Folder/Pasted image 20260615123352.png>)
+![](<../Attachment Folder/Pasted image 20260615123452.png>)
+![](<../Attachment Folder/Pasted image 20260615123427.png>)
+![](<../Attachment Folder/Pasted image 20260615123411.png>)
 
 ## CODE (Mine)
 ```cpp

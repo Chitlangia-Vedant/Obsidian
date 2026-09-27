@@ -277,7 +277,7 @@ int main()
 
 Because `std::int8_t` describes itself as an int, you might be tricked into believing that the above program will print the integral value `65`. However, on most systems, this program will print `A` instead (treating `myInt` as a `signed char`). However, this is not guaranteed (on some systems, it may actually print `65`).
 
-If you want to ensure that a `std::int8_t` or `std::uint8_t` object is treated as an integer, you can convert the value to an integer using [[11. Introduction to type conversion and static_cast#An introduction to explicit type conversion via the static_cast operator|static_cast]] :
+If you want to ensure that a `std::int8_t` or `std::uint8_t` object is treated as an integer, you can convert the value to an integer using [static_cast](<./Unit 4/11. Introduction to type conversion and static_cast.md#An introduction to explicit type conversion via the static_cast operator>) :
 
 ```cpp
 #include <cstdint>

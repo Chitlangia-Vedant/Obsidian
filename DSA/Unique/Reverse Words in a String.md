@@ -70,7 +70,7 @@ public:
     - Set space character for character `s[r]` if `r < s.size()`
 - Finally, resize the string `s` to remove redundant chars.
 
-![[Pasted image 20260714142914.png]]
+![](<../../Attachment Folder/Pasted image 20260714142914.png>)
 ## CODE
 ```cpp
 class Solution {

@@ -10,7 +10,7 @@ Exception in thread "main" ... at Program.main(Program.java:15)
 
 The type of error is stated at the beginning of the list, and the following line tells us where the error occurred. The line "at Program.main(Program.java:15)" says that the error occurred at line number 15 in the Program.java file.
 
-[[JAVA/Extra#Checklist for Troubleshooting|Checklist for Troubleshooting]]
+[Checklist for Troubleshooting](<../Extra.md#Checklist for Troubleshooting>)
 
 # Passing Test Input to Scanner
 

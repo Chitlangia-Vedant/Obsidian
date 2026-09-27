@@ -1,7 +1,7 @@
 # John Deere See and Spray
 Until   recently, these machines just sprayed the whole  field with herbicides but now this machine can   use cameras right here connected to computers  right here that use machine learning to create   a map of millions of crops on a field, visually  identify weeds that don't belong, and then spray   them with just a tiny little squirt of herbicide,  reducing the amount of chemicals they use   on these fields dramatically.
 
-![[Pasted image 20240917200843.png]]
+![](<../Attachment Folder/Pasted image 20240917200843.png>)
 #  Verdant Robotics' organic weeding machine
 These robots identify each plant they hover over.  
 They decide whether to fertilize or kill it.  
@@ -11,7 +11,7 @@ This allows it to use 95% less chemicals than traditional spraying techniques.
 - As the robot rolls over a field, high-res cameras scan every single plant and create a digital copy of the whole farm.  
 This allows the robot to geolocate each plant.
 
-![[Pasted image 20240917195722.png]]
+![](<../Attachment Folder/Pasted image 20240917195722.png>)
 
 This is how you grow greater yields, larger produce, more nutritious food- this is how you really unlock superhuman farming.
 
