@@ -1,4 +1,5 @@
-# 1. Group Lists
+# Plugin
+## 1. Group Lists
 ```
 - Update DB              ---> MUST
 - Call the Notif service --|
@@ -6,4 +7,10 @@
 - Update analytics       --|
 ```
 
-# 2. Manage Sidebars
+## 2. Manage Sidebars
+
+# Games
+## AI incremental 
+
+# AI project
+## Webnovel AI maps
