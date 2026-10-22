@@ -73,7 +73,7 @@ strings.add("string objects inside an arraylist object!");
 
 The internal structures of `ArrayList` and `LinkedList` differ quite a bit. ArrayList saves objects to an array where fetching an object with a specific index is very fast. On the other hand LinkedList constructs a list where each element contains a reference to the next element in the list. When one searches for an object by index in a linked list, one has to go though the list from the beginning until the index.
 
-# The Map Interface
+## The Map Interface
 
 The [Map](http://docs.oracle.com/javase/8/docs/api/java/util/Map.html) interface defines the basic behavior associated with hash tables. Because the HashMap class implements the `Map` interface, it can also be accessed through the `Map` interface.
 
@@ -82,7 +82,7 @@ Map<String, String> maps = new HashMap<>();
 maps.put("ganbatte", "good luck");
 ```
 
-# The Set Interface
+## The Set Interface
 
 The [Set](http://docs.oracle.com/javase/8/docs/api/java/util/Set.html) interface describes functionality related to sets. In Java, sets always contain either 0 or 1 amounts of any given object. As an example, the set interface is implemented by [HashSet](http://docs.oracle.com/javase/8/docs/api/java/util/HashSet.html). Here's how to go through the elements of a set.
 
@@ -106,7 +106,7 @@ two
 
 If objects created from custom classes are added to the HashSet object, they must have both the `equals` and `hashCode` methods defined.
 
-# The Collection Interface
+## The Collection Interface
 
 The [Collection](http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html) interface describes functionality related to collections. Among other things, lists and sets are categorized as collections in Java — both the List and Set interfaces implement the Collection interface. The Collection interface provides, for instance, methods for checking the existence of an item (the method `contains`) and determining the size of a collection (the method `size`).
 

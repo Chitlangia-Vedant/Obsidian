@@ -40,3 +40,6 @@ Serializable serializableString = "string";
 CharSequence charSequenceString = "string";
 Comparable<String> comparableString = "string";
 ```
+
+# Static VS Object
+![](<../../Attachment Folder/Pasted image 20261022133445.png>)
