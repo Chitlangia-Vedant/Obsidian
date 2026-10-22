@@ -9,3 +9,4 @@ If your code doesn't work and you don't know where the error is, these steps wil
 5. Verify that all variables you are using are initialized. If they aren't, a NullPointerException error will occur.
 6. If your program causes an exception, you should definitely pay attention to the _stack trace_ associated with the exception, which is the list of method calls that resulted in the situation that caused the exception.
 7. Learn how to use the debugger. The earlier video will get you started.
+
