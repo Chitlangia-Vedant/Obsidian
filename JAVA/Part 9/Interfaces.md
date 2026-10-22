@@ -111,3 +111,57 @@ If objects created from custom classes are added to the HashSet object, they mus
 The [Collection](http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html) interface describes functionality related to collections. Among other things, lists and sets are categorized as collections in Java — both the List and Set interfaces implement the Collection interface. The Collection interface provides, for instance, methods for checking the existence of an item (the method `contains`) and determining the size of a collection (the method `size`).
 
 The Collection interface also determines how the collection is iterated over. Any class that implements the Collection interface, either directly or indirectly, inherits the functionality required for a `for-each` loop.
+
+# Functional Interface
+A functional interface is an interface that has exactly one abstract method (but may have any number of default or static methods). It’s the target type for a lambda expression or method reference.
+
+```java
+@FunctionalInterface
+public interface Greeting {
+ void sayHello(String name); 
+ default void greetFormally() 
+{ 
+System.out.println("Good day."); 
+}
+}
+```
+
+## Built-in Functional Interfaces 
+Java 8 introduced several pre-defined functional interfaces in the package 
+-> java.util.function
+
+The three most commonly used are:
+- Predicate
+- Consumer
+- Function
+
+### Predicate
+A Predicate represents a boolean-valued function of one argument.
+It is usually used for filtering or conditional checks.
+
+```java
+@FunctionalInterface
+public interface Predicate<T> {
+    boolean test(T t);
+}
+```
+### Consumer
+A Consumer represents an operation that takes one input and returns nothing.
+It is used for performing actions, like printing, saving, logging, etc.
+
+```java
+@FunctionalInterface
+public interface Consumer<T> {
+    void accept(T t);
+}
+```
+
+### Function
+A Function represents a function that takes one input and returns a result.
+
+```java
+@FunctionalInterface
+public interface Function<T, R> {
+    R apply(T t);
+}
+```
