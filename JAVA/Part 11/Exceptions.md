@@ -40,6 +40,17 @@ User input was not a number.
 
 The user input, in this case the string `no!`, is given to the `Integer.parseInt` method as a parameter. The method throws an error if the string cannot be parsed into an integer. Note, that the code within the `catch` block is executed _only_ if an exception is thrown.
 
+# Types of Exception
+![](<../../Attachment Folder/Pasted image 20261023015917.png>)
+1) Checked Exception :
+The classes that extend Throwable class except RuntimeException and Error are known as checked exceptions e.g.IOException, SQLException etc. Checked exceptions are checked at compile-time.
+
+2) Unchecked Exception :
+The classes that extend RuntimeException are known as unchecked exceptions e.g. ArithmeticException, NullPointerException, ArrayIndexOutOfBoundsException etc. Unchecked exceptions are not checked at compile-time rather they are checked at runtime.
+
+3) Error :
+Error is irrecoverable e.g. OutOfMemoryError, VirtualMachineError, AssertionError etc.
+
 # Exceptions and resources
 
 There is separate exception handling for reading operating system resources such as files. With so called try-with-resources exception handling, the resource to be opened is added to a non-compulsory part of the try block declaration in brackets.
