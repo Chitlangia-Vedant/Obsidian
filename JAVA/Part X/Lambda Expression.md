@@ -60,3 +60,34 @@ nums.stream()
     .forEach(System.out::println);
 
 ```
+
+# Lambdas with [Functional Interface](../Part%209/2.%20Interfaces.md#Functional%20Interface)
+
+```java
+Predicate<Integer> isEven = n -> n % 2 == 0;
+Consumer<Integer> printer = n -> System.out.println("Value: " + n);
+Function<Integer, Integer> doubler = n -> n * 2;
+
+int num = 5;
+if (isEven.test(num))
+    printer.accept(num);
+else
+    printer.accept(doubler.apply(num));
+
+```
+
+# Runnable using Lambda
+**Without Lambda**
+```java
+new Thread(new Runnable() {
+    public void run() {
+        System.out.println("Running task...");
+    }
+}).start();
+```
+
+**With Lambda**
+```java
+Runnable task = () -> System.out.println("Running task...");
+new Thread(task).start();
+```
