@@ -32,3 +32,7 @@ What comes next depends entirely on the requirements.
 | [Real-time and collaborative systems](https://www.aced.io/courses/system-design-interviews/realtime-collaborative) | The server must push to the client                  | WebSockets, connection registry, fan-out, presence        |
 | [Media streaming and content delivery](https://www.aced.io/courses/system-design-interviews/media-streaming)       | The payload is large media consumed over time       | Transcoding, segments, adaptive bitrate, CDNs             |
 | [Agentic AI architectures](https://www.aced.io/courses/system-design-interviews/agentic-ai)                        | A model plans and calls tools in a loop             | Agent loops, tool calling, RAG, guardrails, evals         |
+# Combining patterns
+Real problems may involve combining two or more of these patterns. Here's an example.
+
+In Design Uber Eats, the ordering path has to be correct above all else, since a double charge is a real-money failure — that's a transactional workflow. Once an order is confirmed, six different services need to know about it, and none of them should be able to block checkout — that's event-driven fan-out. Meanwhile the driver's location dot updates continuously on the customer's screen, which is a real-time system. Three patterns, three different sets of tradeoffs, one question.
