@@ -31,11 +31,89 @@ The naive design recomputes the answer on every read. The pattern says: compute 
 ```mermaid
 flowchart LR
 Client --> LD[Load Balancer]
-Client --> CDN/edge
+Client --> 1.CDN/edge
 LD --> AS[App Server]
-CDN/edge -.->|"| AS
-AS --> AC[(App cache)]
-AS --> Primary[(Primary)]
-AC -.-> RR[(Read Replica)]
-Primary -.-> RR
+1.CDN/edge -.->|miss| AS
+AS --> AC[(2.App cache)]
+AS ==>|writes| Primary[(4.Primary)]
+AC -.->|miss| RR[(3.Read Replica)]
+Primary -.->|async replication| RR
 ```
+
+**Layers**
+1. **CDN and edge caching.** Serves static and cacheable content physically near the user. The cheapest read you can serve, because it never reaches your infrastructure.
+2. **Application cache (Redis/Memcached).** An in-memory store of hot objects, checked before any database call.
+3. **Read replicas.** Serve reads that miss the cache, kept current by asynchronous replication from the primary. Multiplies read throughput, but replicas lag.
+4. **Primary database.** Takes all writes and is the source of truth, protected by everything in front of it.
+
+## 1. CDN and edge caching
+Serve static and semi-static content, such as images, video thumbnails, JavaScript bundles, and rendered pages, from edge servers near the user. 
+The origin sees only cache misses. 
+This is the cheapest read because the request never reaches the application infrastructure.
+
+## 2. Application cache (Redis or Memcached)
+An application cache is an in-memory store in front of the database.
+
+It holds frequently requested objects such as user profiles, session data, rendered feed pages, and product documents. 
+Common access strategies include:
+- **Cache-aside** (check the cache, fall through to the DB on a miss, populate) is the default.
+- **Read-through** is the same behavior with the cache handling the DB fetch itself.
+- **Write-through** writes to cache and DB together, trading slower writes for a cache that's never stale.
+- **Write-behind** flushes to the DB asynchronously and can lose acknowledged writes if the cache dies; use it rarely and deliberately.
+
+## 3. Load balancing
+Everything above assumes requests are spread across a pool of app servers rather than piling onto one, which is what a [load balancer](https://www.tryexponent.com/courses/system-design-interviews/load-balancers) does: distribute requests across the tier and stop routing to instances that fail their health check. It isn't specific to read-heavy systems, but it's what makes adding app servers a valid response to read growth, and it only works while the app tier stays stateless.
+
+## 4. Read replicas
+The primary database handles writes; changes replicate (usually asynchronously) to replica nodes that serve reads. This multiplies read throughput without touching the application's query patterns, but replication is asynchronous, so replicas lag behind. A user who just posted a comment and immediately reloads the page may not see it, unless you implement the read-your-own-writes strategy (see below).
+
+## 5. Precomputed read models (denormalization)
+**Precomputed read models** store data in the shape the reader needs, alongside its normalized, write-optimized form. This requires more storage and a reliable update path, but it can replace an expensive query with one lookup. Examples:
+
+- **Materialized feeds.** When a user posts, a fan-out worker pushes each new post into every follower's timeline list.
+- **Denormalized product document**. Store one assembled JSON blob instead of a six-table join.
+- **Precomputed aggregates**. Update counts, leaderboards, and trending lists incrementally on write, or compute totals on a scheduled interval.
+# Fan-out on write vs. fan-out on read
+- **Fan-out on write** (push): when someone posts, immediately write the post into every follower's precomputed timeline. Reads are extremely cheap; writes cost O(followers)O(followers).
+- **Fan-out on read** (pull): store nothing extra, and merge posts from followed accounts at read time. Writes are cheap; reads are expensive.
+
+Push works well when read volume dwarfs write volume, as it does in many social products. 
+
+It breaks on the **celebrity problem**: one post from an account with 100M followers creates 100M timeline writes.
+Use a hybrid instead. Fan out on write for normal accounts, pull posts from accounts above a follower threshold, and merge both sources when the user reads the feed.
+# Freshness and cache invalidation
+Once you have copies, you need an update story. The main options for cache invalidation, in increasing effort, are:
+- **TTL expiry** (every entry dies after N seconds; simple, bounds staleness, add jitter so a popular key class doesn't expire everywhere at once),
+- **Explicit invalidation on write** (precise, but miss one write path and you serve stale data indefinitely)
+- **Event-driven invalidation** (the write publishes an event and a consumer rebuilds affected read models; this is how denormalized documents usually stay current, and it pairs with [event-driven and pub/sub](https://www.aced.io/courses/system-design-interviews/event-driven-pubsub))
+- **Versioned keys** (bump a version in the cache key so readers miss the fresh copy).
+
+# Tradeoffs and considerations
+Every layer in front of the database introduces another failure mode. Let's account for the common ones.
+
+- **Cache stampede.** A hot key expires and thousands of concurrent requests all recompute it at once. Mitigate with per-key locking so one request recomputes while others wait, stale-while-revalidate to serve the old value during the refresh, and TTL jitter so a whole key class doesn't expire together.
+- **Cold start.** A deploy, flush, or cache failure sends every request to the database at once. If the database cannot survive an empty cache, the cache is a required dependency rather than an optional optimization.
+- **Hot keys.** Traffic for one celebrity profile concentrates on a single cache node. Replicate the hot key across nodes, or put a small in-process cache in front of it.
+- **Cache penetration.** Repeated requests for keys that don't exist bypass the cache entirely and hit the database every time. Cache the "not found" result, or use a Bloom filter.
+- **Replication lag.** A user posts, reloads, and cannot see the new post because the replica has not caught up. The fixes are collectively called read-your-own-writes: pin the user's reads to the primary briefly after a write, keep them on one replica for a monotonic view, carry a version token that a replica must catch up to, or render the action optimistically on the client. The writer sees a consistent view while other users can remain eventually consistent.
+
+# When to use it, and when not to
+Reach for these techniques when:
+
+- **Reads exceed writes by 10x or more.** Feeds, catalogs, content sites, and dashboards all sit here comfortably.
+- **The same result is requested repeatedly by many users.** One computed answer serves thousands of readers.
+- **Latency targets are tight but the query is expensive.** Precomputing moves the cost off the read path.
+- **Traffic is spiky.** A cache absorbs peaks that would otherwise reach the database.
+
+Leave them alone when:
+
+- **The workload is write-heavy or balanced.** Precomputing read models for data written constantly and read rarely is wasted work.
+- **You need strong consistency.** Payments and account balances should not be served from a stale cache. That is [transactional workflows](https://www.aced.io/courses/system-design-interviews/transactional-workflows) territory.
+- **The system isn't under pressure yet.** Caching adds an invalidation surface and a new failure mode, so it needs to earn its place.
+
+# Common pitfalls
+- **Adding Redis with no invalidation story.** Every cached value needs a refresh or invalidation path.
+- **Ignoring the cold start.** If the database can't survive an empty cache, a routine flush becomes an outage.
+- **No stampede control.** One hot key expiring takes the database down with it.
+- **Forgetting replication lag.** This is what breaks "user posts, user immediately sees post."
+- **Denormalized read models with no owner.** They rot silently, so design the rebuild and backfill path alongside the incremental update.
