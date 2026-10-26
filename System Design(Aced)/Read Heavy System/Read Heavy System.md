@@ -62,7 +62,7 @@ Common access strategies include:
 - **Write-behind** flushes to the DB asynchronously and can lose acknowledged writes if the cache dies; use it rarely and deliberately.
 
 ## 3. Load balancing
-Everything above assumes requests are spread across a pool of app servers rather than piling onto one, which is what a [load balancer](https://www.tryexponent.com/courses/system-design-interviews/load-balancers) does: distribute requests across the tier and stop routing to instances that fail their health check. It isn't specific to read-heavy systems, but it's what makes adding app servers a valid response to read growth, and it only works while the app tier stays stateless.
+Everything above assumes requests are spread across a pool of app servers rather than piling onto one, which is what a [Load Balancing](../Appendix/Load%20Balancing.md) does: distribute requests across the tier and stop routing to instances that fail their health check. It isn't specific to read-heavy systems, but it's what makes adding app servers a valid response to read growth, and it only works while the app tier stays stateless.
 
 ## 4. Read replicas
 The primary database handles writes; changes replicate (usually asynchronously) to replica nodes that serve reads. This multiplies read throughput without touching the application's query patterns, but replication is asynchronous, so replicas lag behind. A user who just posted a comment and immediately reloads the page may not see it, unless you implement the read-your-own-writes strategy (see below).
