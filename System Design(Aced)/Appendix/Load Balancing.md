@@ -14,3 +14,9 @@ Depending on the chosen strategy and performance requirements, load balancers ca
 - **Scalability.** Load balancers make it easier to scale up and down with demand by adding or removing backend servers.
 - **Reliability**. Load balancers provide redundancy and can minimize downtime by automatically detecting and replacing unhealthy servers.
 - **Performance**. By distributing the workload evenly across servers, load balancers can improve the average response time.
+
+# Considerations
+
+- **Bottlenecks**. As scale increases, load balancers can themselves become a bottleneck or single point of failure, so multiple load balancers must be used to guarantee availability. [DNS round robin](https://en.wikipedia.org/wiki/Round-robin_DNS) can be used to balance traffic across different load balancers.
+- **User** **sessions.** The same user's requests can be served from different backends unless the load balancer is configured otherwise. This could be problematic for applications that rely on session data that isn't shared across servers.
+- **Longer deploys.** Deploying new server versions can take longer and require more machines since the load balancer needs to roll over traffic to the new servers and drain requests from the old machines.
