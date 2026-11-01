@@ -69,3 +69,11 @@ Timeouts and cancellation add more transitions. Explicit state lets users see pr
 
 # Leases and reliable execution
 
+A worker should never own a job forever. It claims a **lease** for a limited period, and if it crashes, the lease expires and another worker retries. Managed queues call this a visibility timeout. In a job table it looks like:
+
+```SQL
+UPDATE job_runs
+SET status = 'running', claimed_by = 'worker-17',
+    lease_expires_at = now() + interval '60 seconds'
+WHERE run_id = 'run_123' AND status = 'queued';
+```

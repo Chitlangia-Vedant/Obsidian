@@ -60,6 +60,10 @@ Partitioning by order_id keeps each order's events in order while still spreadin
 
 A poor partition key fails in one of two ways. Partition randomly and you lose the per-entity ordering you needed. Partition too narrowly, around one celebrity user or one giant tenant, and you create a hot partition that bottlenecks the whole topic.
 
+# Failure handling
+Failures are normal in async systems. A consumer can fail because a downstream database is unavailable, a payload is malformed, a dependency times out, or a deploy introduced a bug. A production-grade design includes retries for transient failures, exponential backoff so a broken dependency isn't hammered, **dead-letter queues (DLQs)** for messages that repeatedly fail, alerts when failure rates cross thresholds, replay tools to reprocess events after a fix, and consumer offsets to track progress.
+
+Define what happens _when processing fails_, not only how messages are sent. [Async jobs and workers](https://www.aced.io/courses/system-design-interviews/async-jobs-workers#retries-and-failure-handling) covers error classification, backoff budgets, and DLQ replay in detail.
 # Common pitfalls
 - **Publishing before the transaction commits.** Consumers react to something that never happened. This is exactly what the outbox prevents.
 - **Assuming exactly-once processing.** Most systems deliver at least once, so consumers have to be idempotent.
