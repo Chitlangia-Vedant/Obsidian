@@ -5,9 +5,9 @@
 - **Step 5:** **Review and summarize**. Summarize requirements, justify decisions, suggest alternatives, discuss additional tradeoffs, and answer any questions. (4 minutes)
 
 ![How to Answer System Design Interview Questions Framework - Lesson](https://images.ctfassets.net/x78yjrjc11pq/2LSflewaGtM5PuNbQoWFwJ/e90a69939ea86e8c67917c57bf8589e2/How_to_Answer_System_Design_Interview_Questions_Framework_-_Lesson.png)
-```Example
+### Example
 How would you design Instagram?
-```
+
 # Step 1: Define the problem
 Asking clarifying questions is a critical first step, as it creates the foundation that your system will be built upon.
 
@@ -89,7 +89,7 @@ Based on the requirements outlined in Step 1, design a high-level system and bri
 The main objective in this step is to incorporate the requirements you identified in the previous step into your system’s main components.
 
 ## Design your APIs
-Introduce your system by designing your [APIs](https://www.tryexponent.com/courses/system-design-interview/fundamentals-system-design/system-design-apis) (Application Programming Interfaces).
+Introduce your system by designing your [APIs](../Appendix/APIs.md) (Application Programming Interfaces).
 
 Each requirement should translate to one or more APIs. You can choose what type of APIs you want to use. Common API types include:
 
