@@ -51,3 +51,34 @@ There are three common ways to make the claim atomic:
 - **Atomic conditional writes.** Start with one statement that checks and claims at once, such as the conditional `UPDATE` above, a DynamoDB conditional put, or a Redis Lua script. The datastore serializes competing writes, so the application does not need an explicit lock.
 - **Optimistic concurrency.** Read a version number, then write back with `WHERE version = ?`, and retry if the row changed underneath you. Good at low-to-moderate contention when you genuinely need to read, decide, then write. It's the wrong choice for the hottest rows in a big on-sale, where the retries pile into a storm.
 - **Pessimistic locking.** `SELECT ... FOR UPDATE`, decide, commit. Fine at moderate contention. Always lock rows in a consistent order to avoid deadlocks, and never hold a lock across an external call.
+
+Whatever mechanism you choose, add `UNIQUE(event_id, seat_id)` to confirmed bookings. The database constraint remains a final defense if application logic is wrong.
+
+Distributed locks (the Redis-style kind) come up often and are weaker than they look. 
+A lock with a TTL can expire while its holder is merely stalled, quietly admitting a second holder who believes they hold it exclusively. When the data lives in one database, its own conditional write is both simpler and safer.
+
+# Stitching in payment: sagas, not distributed transactions
+The workflow also needs four protections:
+
+- **Idempotency everywhere.** The user double-clicks, your payment call times out and retries, the provider's webhook arrives twice. Every step has to be safe to repeat: idempotency keys on the charge, upsert-style confirmation keyed by reservation ID, and deduplication on webhook event IDs.
+- **The ambiguous timeout.** A payment call that times out may still have succeeded. Query the provider by idempotency key, or wait for its webhook, before deciding what happened. Make the hold long enough to cover that resolution window.
+- **Reliable state transitions.** Confirming the booking and publishing a `BookingConfirmed` event must not diverge, which is the outbox pattern from [Event-Driven and Pub-Sub Architectures](../03.%20Event-Driven%20and%20Pub-Sub%20Architectures/Event-Driven%20and%20Pub-Sub%20Architectures.md).
+- **Crash recovery.** If the orchestrating service dies between steps, something has to resume or unwind the workflow. Keep a durable row per order holding its saga state, advanced by idempotent steps, so one place owns the order's state machine. Engines like Temporal or Step Functions do this for you.
+
+# Surviving the rush
+A stadium on-sale concentrates a burst of traffic onto a few thousand rows. Combine four defenses:
+
+- **A virtual waiting room** admits users into checkout at a controlled rate. This converts an overload problem into a fairness problem, which is a much better problem to have.
+- **Serve the seat map from cache, but decide at the source of truth.** The map thousands of people are staring at can be a few seconds stale, while the claim is always an atomic write against the authoritative store. Push seat-taken updates to viewers asynchronously ([real-time and collaborative systems](https://www.aced.io/courses/system-design-interviews/realtime-collaborative)).
+- **Partition by event** ([distributed storage](https://www.aced.io/courses/system-design-interviews/distributed-storage)) so one on-sale can't take down the rest of the platform, and each claim stays inside a single partition.
+- **Prefer counted inventory where the product allows it.** General-admission tickets are one shardable counter; reserved seating spreads contention across seat rows naturally.
+### Overselling on purpose
+
+Not every domain forbids overselling. Airlines and hotels may overbook against predicted no-shows, while e-commerce may accept occasional oversells rather than reject a purchase. If the business relaxes the invariant, represent that as an explicit overbooking budget with reconciliation and compensation such as rebooking, refunds, or vouchers. Clarify whether overselling is forbidden, as with an assigned seat, or allowed as a deliberate policy.
+# Common pitfalls
+
+- **Checking availability against a cache or replica.** The check has to happen atomically with the claim, against the source of truth.
+- **Reading and then writing in two separate statements.** Another request can change the inventory between the check and the claim.
+- **Holds that never expire.** Abandoned carts freeze inventory that nobody can buy.
+- **Treating a payment timeout as a failure.** The charge may have succeeded, so a blind retry double-charges.
+- **Confirmation that isn't idempotent.** A duplicate webhook becomes a duplicate booking.
