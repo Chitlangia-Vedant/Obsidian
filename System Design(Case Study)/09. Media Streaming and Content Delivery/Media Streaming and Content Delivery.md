@@ -53,3 +53,11 @@ That changes three parts of the design.
 - **6-second segments:** 15 to 30 seconds behind. This may work for a keynote, but not for a match that viewers are also following elsewhere.
 - **LL-HLS with chunked transfer:** 2 to 5 seconds, at the cost of more requests.
 - **WebRTC:** sub-second, but you forfeit HTTP caching and need an SFU fan-out tier.
+
+**Everyone requests the same segment at once.** VOD traffic is spread across titles and playback positions. During a live broadcast, millions of players may request the newest segment within the same few seconds. Origin shielding and request coalescing are required to absorb that burst. Cache the continuously changing manifest with a short TTL.
+
+### Designing for short-form video formats
+
+**TikTok-style short video** changes the access pattern rather than the pipeline. Startup time dominates the experience, so the player prefetches the first segments of upcoming feed items while the current video plays. A new upload can become popular before the full ladder is ready. Publish a baseline rendition quickly, then fill in the remaining qualities. Ranking becomes the main product system, while this pattern handles delivery.
+
+**Sizing.** Bandwidth is the first number to calculate. 10M concurrent viewers at 5 Mbps require about 50 Tbps, which is far beyond one origin. A CDN is mandatory at that scale. Storage still matters: a 2-hour movie across a full ladder uses 15 to 30 GB, so a million titles require tens of PB before replication. At an egress cost of even $0.01/GB, codec efficiency and cache hit rate directly affect the budget. Spending more on encoding can be worthwhile when it reduces the much larger delivery bill.
