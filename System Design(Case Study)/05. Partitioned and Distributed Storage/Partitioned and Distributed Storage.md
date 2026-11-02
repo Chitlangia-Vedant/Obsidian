@@ -69,3 +69,24 @@ Other options include splitting partitions when they cross a size threshold or u
 
 Even a perfect hash cannot spread traffic for one extremely popular key. A celebrity account, viral post, or large tenant can still overload one partition. We can choose a higher-cardinality key, **salt the hot key** into `key#1..key#k` subkeys, move a large tenant onto dedicated capacity, or cache read-hot keys. Salting spreads writes but makes readers gather the value from several partitions. If we partition by `video_id`, for example, a viral video's view-count writes may need this treatment.
 
+# Tradeoffs and considerations
+Once data lives on more than one node, a set of operations that used to be free stop being free:
+
+- **Secondary indexes** come in two flavors. A _local_ index keeps writes inside one partition, but queries have to scatter-gather across every partition. A _global_ index sends queries to one place, but every write touches two partitions and the index is usually eventually consistent. Say which one you're choosing.
+- **Joins and multi-key transactions** across partitions require moving data or coordinating with two-phase commit or a saga ([transactional workflows](https://www.aced.io/courses/system-design-interviews/transactional-workflows)). Choose a partition key that keeps common transactions local. In a booking system, partitioning by `event_id` keeps all seat holds for one concert together.
+- **Aggregations** turn into scatter-gather queries or precomputed pipelines ([batch data pipelines](https://www.aced.io/courses/system-design-interviews/batch-data-pipelines)).
+- **Not every large dataset needs this at all.** Blobs, media, and backups belong in [object storage](https://www.tryexponent.com/courses/system-design-interviews/object-storage), which handles distribution for you.
+
+# When to use it, and when not to
+
+Reach for partitioning when the dataset can't fit (or won't soon fit) on one node's disk or RAM working set, when write throughput exceeds what a single primary can absorb, when you're designing a storage component itself (key-value store, message queue, object store, time-series database), or when tenant isolation or data residency forces data to live in specific places.
+
+Do not shard prematurely. A well-indexed Postgres database with replicas can support many systems. Sharding adds routing, rebalancing, replication, and cross-partition coordination, so it needs a concrete capacity or isolation requirement. Read-heavy workloads on modest datasets need the read-heavy pattern. Analytics with joins across the whole dataset need a warehouse and batch pipeline rather than a sharded OLTP store.
+
+# Common pitfalls
+
+- **`hash(key) mod N` routing.** Changing N remaps nearly every key, and capacity changes are a certainty.
+- **No answer for adding a node.** "We shard by user_id across 8 nodes" needs a story for node 9.
+- **Casual cross-shard transactions.** "Then we update both shards" skips the coordination and failure handling the operation requires.
+- **Leader replication without fencing.** A partitioned old leader keeps accepting writes and silently diverges.
+- **Three replicas in one rack.** Spread replicas across failure domains, and say that you're doing it.
