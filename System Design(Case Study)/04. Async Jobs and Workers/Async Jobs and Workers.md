@@ -77,3 +77,7 @@ SET status = 'running', claimed_by = 'worker-17',
     lease_expires_at = now() + interval '60 seconds'
 WHERE run_id = 'run_123' AND status = 'queued';
 ```
+
+For long jobs, the worker **heartbeats** to extend the lease and update progress. Final writes should check ownership or use a fencing token, so a stale worker whose lease already expired can't overwrite the status written by its replacement.
+
+A worker can also crash _after_ performing a side effect but _before_ acknowledging completion, so the job runs again. Job execution is therefore at-least-once, and handlers have to make repeated execution safe.
