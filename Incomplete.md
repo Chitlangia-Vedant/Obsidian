@@ -7,3 +7,4 @@
 - [ ] SAGA & CQRS
 # SD (Case Study)
 - [ ] Async Jobs & Workers
+- [ ] Batch Processing and Data Pipelines

@@ -17,3 +17,16 @@ graph LR
     StreamJob --> Warehouse
     Warehouse --> Dashboards[Dashboards + APIs]
 ```
+
+# The core idea
+Transactional databases, often called **OLTP** systems for online transaction processing, handle many small, targeted reads and writes. 
+Analytics has the opposite shape: fewer queries that may scan billions of rows. Running `GROUP BY` over last month's events on the production database can overwhelm the same database serving checkout. Give analytics its own path, with columnar, append-only storage partitioned by time and parallel compute that runs near the data.
+
+Make two decisions early. First, choose **batch or streaming per consumer**. 
+- Batch processes a bounded input such as yesterday's events. It is cheaper and easier to replay. 
+- Streaming processes an unbounded input continuously and provides fresher results, but adds state, event-time handling, and exactly-once processing concerns. 
+A fraud model may need results within seconds, while a finance report only needs a correct daily result.
+
+Second, decide **where the source of truth lives**. Keep an immutable log or data lake of raw events and treat downstream tables as derived, rebuildable data. If a bug corrupts an aggregate, we can correct the logic and replay the raw input.
+
+# 
