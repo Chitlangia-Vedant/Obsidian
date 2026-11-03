@@ -5,8 +5,8 @@
 	- [x] CDN
 	- [ ] Tricks
 - [x] Kafka Terms
-- [ ] RPC
-- [ ] SAGA & CQRS
+- [x] RPC
+- [x] SAGA & CQRS
 # SD (Case Study)
 - [ ] Async Jobs & Workers
 - [ ] Batch Processing and Data Pipelines
