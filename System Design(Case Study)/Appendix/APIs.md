@@ -107,7 +107,7 @@ There are 3 potential scenarios when a payment request is made:
 
 Overall, the first two scenarios are acceptable, but the last scenario is problematic and could result in unintentional double charging.
 
-### **Possible solution**
+### Possible solution
 
 To address this problem, we need to develop an idempotent payment API. An idempotent API ensures that only the first call generates the expected result and subsequent calls are no-ops.
 
@@ -127,7 +127,7 @@ Similarly, the mutating API, `DELETE`, only takes effect during the first call, 
 The last mutating API, `POST`, creates a new resource.
 
 However, receiving multiple requests can cause servers to allocate different places for the new resource. Therefore, the `POST` API is usually **not** idempotent.
-## **API gateways**
+## API gateways
 
 Although APIs offer security to the systems on either end, they are susceptible to overuse or abuse. If you're concerned about this, you may want to implement an _API gateway_ to collect requests and route them accordingly.
 
@@ -139,7 +139,7 @@ All client requests are routed to the gateway, which directs them accordingly—
 
 Generally, use cases for API gateways include _user authentication_, _rate limiting_, and _billing_ if you're monetizing an API.
 
-# **Learn more**[](https://www.aced.io/courses/system-design-interviews/system-design-apis#learn-more)
+# Learn more
 
 - **Netflix's Engineering Blog:** [Engineering Trade-Offs and The Netflix API Re-Architecture](https://netflixtechblog.com/engineering-trade-offs-and-the-netflix-api-re-architecture-64f122b277dd) and [Beyond REST](https://netflixtechblog.com/beyond-rest-1b76f7c20ef6) (learn about the engineering team's experiments with microservices over the years)
 - [REST API response codes and error messages](https://www.ibm.com/docs/en/odm/8.8.1?topic=api-rest-response-codes-error-messages) (IBM)

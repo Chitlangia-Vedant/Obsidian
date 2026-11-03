@@ -61,3 +61,10 @@ That changes three parts of the design.
 **TikTok-style short video** changes the access pattern rather than the pipeline. Startup time dominates the experience, so the player prefetches the first segments of upcoming feed items while the current video plays. A new upload can become popular before the full ladder is ready. Publish a baseline rendition quickly, then fill in the remaining qualities. Ranking becomes the main product system, while this pattern handles delivery.
 
 **Sizing.** Bandwidth is the first number to calculate. 10M concurrent viewers at 5 Mbps require about 50 Tbps, which is far beyond one origin. A CDN is mandatory at that scale. Storage still matters: a 2-hour movie across a full ladder uses 15 to 30 GB, so a million titles require tens of PB before replication. At an egress cost of even $0.01/GB, codec efficiency and cache hit rate directly affect the budget. Spending more on encoding can be worthwhile when it reduces the much larger delivery bill.
+
+# Common pitfalls
+- **Streaming bytes through application servers.** The app tier should issue signed URLs without carrying the media itself.
+- **Jumping from "upload" to "CDN".** The design still needs a transcoding and packaging pipeline between those stages.
+- **Serving a single quality level.** This causes buffering on weak networks and wastes bandwidth on strong ones.
+- **Treating live like VOD.** A live design must account for its latency budget and the burst of viewers requesting the newest segment together.
+- **Forgetting the control plane.** View counts and watch history are high-write metadata problems that still need their own storage and processing paths.

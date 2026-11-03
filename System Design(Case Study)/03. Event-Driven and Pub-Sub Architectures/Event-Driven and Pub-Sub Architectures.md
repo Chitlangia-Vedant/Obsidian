@@ -21,7 +21,7 @@ Commands are instructions. Producers in pub/sub systems usually publish events, 
 A _queue_ distributes work among workers, and each message is usually processed by exactly one worker. Use it when work should happen once, such as sending one email or transcoding one video. 
 _Pub/sub_ broadcasts events to multiple independent subscribers, and each subscriber group gets its own copy. Use it when many systems must react to the same event. 
 
-The rule of thumb: queue when work is processed once, pub/sub when multiple systems react to the same fact. Reliable execution of the work itself is [Async jobs and workers](https://www.aced.io/courses/system-design-interviews/async-jobs-workers).
+The rule of thumb: queue when work is processed once, pub/sub when multiple systems react to the same fact. Reliable execution of the work itself is [Async Jobs and Workers](../04.%20Async%20Jobs%20and%20Workers/Async%20Jobs%20and%20Workers.md).
 
 # The dual-write problem and the outbox pattern
 Suppose the Order Service creates an order in its database, then crashes before publishing `OrderCreated`. The database says the order exists, but no downstream service will hear about it. This is the **dual-write problem**: the service writes to the database and broker without one shared transaction, so the two systems can diverge.
@@ -63,7 +63,7 @@ A poor partition key fails in one of two ways. Partition randomly and you lose t
 # Failure handling
 Failures are normal in async systems. A consumer can fail because a downstream database is unavailable, a payload is malformed, a dependency times out, or a deploy introduced a bug. A production-grade design includes retries for transient failures, exponential backoff so a broken dependency isn't hammered, **dead-letter queues (DLQs)** for messages that repeatedly fail, alerts when failure rates cross thresholds, replay tools to reprocess events after a fix, and consumer offsets to track progress.
 
-Define what happens _when processing fails_, not only how messages are sent. [Async jobs and workers](https://www.aced.io/courses/system-design-interviews/async-jobs-workers#retries-and-failure-handling) covers error classification, backoff budgets, and DLQ replay in detail.
+Define what happens _when processing fails_, not only how messages are sent. [Async Jobs and Workers](../04.%20Async%20Jobs%20and%20Workers/Async%20Jobs%20and%20Workers.md) covers error classification, backoff budgets, and DLQ replay in detail.
 # Common pitfalls
 - **Publishing before the transaction commits.** Consumers react to something that never happened. This is exactly what the outbox prevents.
 - **Assuming exactly-once processing.** Most systems deliver at least once, so consumers have to be idempotent.

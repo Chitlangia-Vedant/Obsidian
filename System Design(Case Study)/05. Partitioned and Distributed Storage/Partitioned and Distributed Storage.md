@@ -73,9 +73,9 @@ Even a perfect hash cannot spread traffic for one extremely popular key. A celeb
 Once data lives on more than one node, a set of operations that used to be free stop being free:
 
 - **Secondary indexes** come in two flavors. A _local_ index keeps writes inside one partition, but queries have to scatter-gather across every partition. A _global_ index sends queries to one place, but every write touches two partitions and the index is usually eventually consistent. Say which one you're choosing.
-- **Joins and multi-key transactions** across partitions require moving data or coordinating with two-phase commit or a saga ([transactional workflows](https://www.aced.io/courses/system-design-interviews/transactional-workflows)). Choose a partition key that keeps common transactions local. In a booking system, partitioning by `event_id` keeps all seat holds for one concert together.
-- **Aggregations** turn into scatter-gather queries or precomputed pipelines ([batch data pipelines](https://www.aced.io/courses/system-design-interviews/batch-data-pipelines)).
-- **Not every large dataset needs this at all.** Blobs, media, and backups belong in [object storage](https://www.tryexponent.com/courses/system-design-interviews/object-storage), which handles distribution for you.
+- **Joins and multi-key transactions** across partitions require moving data or coordinating with two-phase commit or a saga ([Transactional Systems](../06.%20Transactional%20Systems/Transactional%20Systems.md)). Choose a partition key that keeps common transactions local. In a booking system, partitioning by `event_id` keeps all seat holds for one concert together.
+- **Aggregations** turn into scatter-gather queries or precomputed pipelines ([Batch Processing and Data Pipelines](../07.%20Batch%20Processing%20and%20Data%20Pipelines/Batch%20Processing%20and%20Data%20Pipelines.md)).
+- **Not every large dataset needs this at all.** Blobs, media, and backups belong in object storage, which handles distribution for you.
 
 # When to use it, and when not to
 

@@ -69,8 +69,8 @@ The workflow also needs four protections:
 A stadium on-sale concentrates a burst of traffic onto a few thousand rows. Combine four defenses:
 
 - **A virtual waiting room** admits users into checkout at a controlled rate. This converts an overload problem into a fairness problem, which is a much better problem to have.
-- **Serve the seat map from cache, but decide at the source of truth.** The map thousands of people are staring at can be a few seconds stale, while the claim is always an atomic write against the authoritative store. Push seat-taken updates to viewers asynchronously ([real-time and collaborative systems](https://www.aced.io/courses/system-design-interviews/realtime-collaborative)).
-- **Partition by event** ([distributed storage](https://www.aced.io/courses/system-design-interviews/distributed-storage)) so one on-sale can't take down the rest of the platform, and each claim stays inside a single partition.
+- **Serve the seat map from cache, but decide at the source of truth.** The map thousands of people are staring at can be a few seconds stale, while the claim is always an atomic write against the authoritative store. Push seat-taken updates to viewers asynchronously ([Real-Time and Collaborative Systems](../08.%20Real-Time%20and%20Collaborative%20Systems/Real-Time%20and%20Collaborative%20Systems.md)).
+- **Partition by event** ([Partitioned and Distributed Storage](../05.%20Partitioned%20and%20Distributed%20Storage/Partitioned%20and%20Distributed%20Storage.md)) so one on-sale can't take down the rest of the platform, and each claim stays inside a single partition.
 - **Prefer counted inventory where the product allows it.** General-admission tickets are one shardable counter; reserved seating spreads contention across seat rows naturally.
 ### Overselling on purpose
 
