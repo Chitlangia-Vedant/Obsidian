@@ -1,8 +1,10 @@
 # SD
 - [ ] UML
 - [ ] Cardinality
-- [ ] Caching (CDN & Tricks)
-- [ ] Kafka Terms
+- [ ] Caching
+	- [x] CDN
+	- [ ] Tricks
+- [x] Kafka Terms
 - [ ] RPC
 - [ ] SAGA & CQRS
 # SD (Case Study)
