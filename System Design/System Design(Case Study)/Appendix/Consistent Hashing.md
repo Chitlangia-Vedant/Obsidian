@@ -16,11 +16,11 @@ hash values range from 00-05. Conventional methods for distributing data among c
 
 We can see in the standard case where the number of servers is the expected number N, then the mapping is straightforward.
 
-![](<../../Attachment Folder/Pasted image 20261103171037.png>)
+![](<../../../Attachment Folder/Pasted image 20261103171037.png>)
 
 But what happens when one of the servers (say server 2) fails. When server 2 fails, it is likely that most of the keys have to be redistributed across the other servers since `serverKey = (hash_function(key) % N)` will change since N has changed from 3 to 2.
 
-![](<../../Attachment Folder/Pasted image 20261103171210.png>)
+![](<../../../Attachment Folder/Pasted image 20261103171210.png>)
 
 A similar thing happens when servers are added.
 

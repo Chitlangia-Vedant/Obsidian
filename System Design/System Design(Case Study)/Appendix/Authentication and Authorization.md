@@ -49,3 +49,26 @@ Once a user is authenticated, we still need to ensure that they're only allowed 
 ACL is typically used at a more granular level than either ABAC or RBAC - for example, to grant individual users access to a certain file. ABAC and RBAC are generally instituted as company-wide policies.
 
 ## OAuth 2
+**OAuth 2** is a popular framework that uses APIs to extend authorization across connected apps.
+
+Let's say you've created a personal assistant app that needs access to a user's Gmail. Google supports OAuth 2, so once you've registered the app with Google and set up your APIs, your app would be able to access your users' Gmail accounts without compromising their usernames and passwords.
+
+How does this work?
+
+Four roles are defined:
+
+- **Resource Owner or User:** Owns the account and wants to grant read and/or write access to an application. Credentials include a username and password. In the above example, this is a user who wants to use your personal assistant app.
+- **Client:** An application that accesses the user's account. It must be authorized by the user and validated by the authorization provider. Credentials include an ID and a client secret (analogous to a username and password, but specific to the client itself.) Your app.
+- **Resource Server:** Houses the application and/or data owned by the user. Will allow access to a client if the client has a valid **access token**. Gmail in the above example.
+- **Authorization Server**: A 3rd party that verifies the identity of the user and the client, and issues access tokens.
+
+There are 5 different **grant types** that OAuth 2 uses. Think of each grant type as a way for an application to get an access token. These are:
+
+- **Authorization code grant**. The most common grant type; the client exchanges an authorization code in exchange for an access token.
+- **Resource owner credentials grant** Allows a client to sign in directly using the resource owner's password.
+- **Client credentials grant**. Mainly used for server-to-server interactions; no resource-owner interaction required.
+- **Implicit grant**. This grant type was previously recommended for single page applications which couldn't keep a client secret. This has been superseded PKCE used with a standard authorization code grant.
+
+# Further Reading
+Check out this series on the development of OAuth to get a perspective on how early social platforms solved authentication problems in the early 2000s and eventually converged on API standards. It's an interesting case study on the development of open standards driven by a rapidly-changing industry, and it brought us to where we are today.
+This paper on existing multi-factor authentication methods and future trends covers the major operational challenges that block MFA, and proposes some solutions.

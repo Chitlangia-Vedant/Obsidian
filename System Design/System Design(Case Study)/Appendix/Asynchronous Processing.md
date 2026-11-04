@@ -8,7 +8,7 @@ Commonly used in applications where large amounts of data are processed regularl
 
 Perhaps the most popular implementation of this is **MapReduce,** a model for batch processing introduced by Google in 2004. It's a simple algorithm:
 
-![](<../../Attachment Folder/Pasted image 20261104125505.png>)
+![](<../../../Attachment Folder/Pasted image 20261104125505.png>)
 
 The reduced input is automatically sorted and stored for easy access.
 
@@ -32,7 +32,7 @@ Generally:
 
 **Publish/Subscribe (or pub/sub)** messaging is another async communication method to know. In pub/sub messaging, you have a _subscriber_ who receives a message sent by a _publisher_ via a _broker_. Because communication is decoupled, messages can be automatically pushed to all subscribers rather than pulled individually via a message queue. This method is popular in event-driven architecture because event-driven services can be delivered quickly and easily. Additionally, because publishers are isolated from subscribers, the system is easier to maintain and secure.
 
-![](<../../Attachment Folder/Pasted image 20261104130113.png>)
+![](<../../../Attachment Folder/Pasted image 20261104130113.png>)
 
 # When to bring it up in an interview
 
@@ -40,7 +40,7 @@ Batch processing is useful when you need to process chunks of data in predictabl
 
 Take a look at the below table to help guide your decisions when prepping for your interview:
 
-![](<../../Attachment Folder/Pasted image 20261104130344.png>)
+![](<../../../Attachment Folder/Pasted image 20261104130344.png>)
 
 ### Further reading
 

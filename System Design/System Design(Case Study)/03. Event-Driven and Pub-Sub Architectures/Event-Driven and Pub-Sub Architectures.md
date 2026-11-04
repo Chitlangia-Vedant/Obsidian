@@ -2,7 +2,7 @@ When a customer places an order at a store like Amazon, how do payment, inventor
 The answer is an **event-driven system**, where a service announces what happened and other services respond independently.
 
 The Order Service publishes an event such as `OrderCreated`, and every subscriber receives its own copy. The publisher does not wait for those services or even need to know they exist.
-[18. Messaging Queue & Kafka](../../System%20Design/18.%20Messaging%20Queue%20&%20Kafka.md)
+[18. Messaging Queue & Kafka](../../18.%20Messaging%20Queue%20&%20Kafka.md)
 # The core idea
 In a synchronous system, Service A calls Service B and waits. This is appropriate for simple request/response flows, but it couples their latency and availability. If B is slow or unavailable, A inherits the problem. As more services join the flow, A must know about every one, and the user's request stays open until the chain finishes.
 

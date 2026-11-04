@@ -10,15 +10,15 @@ There are two primary ways for a CDN cache to be populated
 
 ## Push CDN
 It’s the responsibility of the engineers to push new/updated files to the CDN, which would then propagate them to all of the CDN server caches. 
-![](<../../Attachment Folder/Pasted image 20261103161435.png>)
+![](<../../../Attachment Folder/Pasted image 20261103161435.png>)
 The origin server sends the asset to the CDN, which stores it in its cache. The CDN never makes any requests to the origin server.
 
 ## Pull CDN
 The server cache is lazily updated: when a user sends a static asset request to the CDN server and it doesn’t have it, it’ll fetch the asset from the origin server, populate its cache with the asset, and then send the asset to the user.
-![](<../../Attachment Folder/Pasted image 20261103161441.png>)
+![](<../../../Attachment Folder/Pasted image 20261103161441.png>)
 If the CDN doesn’t have the static asset in its cache, then it forwards the request to the origin server and then caches the new asset.
 
-![](<../../Attachment Folder/Pasted image 20261103161447.png>)
+![](<../../../Attachment Folder/Pasted image 20261103161447.png>)
 
 If the CDN has the asset in its cache, it returns the cached asset.
 

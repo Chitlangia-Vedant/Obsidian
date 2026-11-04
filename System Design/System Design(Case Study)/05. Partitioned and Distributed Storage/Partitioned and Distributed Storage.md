@@ -2,7 +2,7 @@ When a dataset becomes too large or write-heavy for one machine, how do we add c
 
 Distribution gives us storage and write throughput, but makes cross-key queries, multi-key transactions, and operations more expensive.
 
-[Sharding](../../System%20Design/09.%20High%20Level%20Design.md#Sharding)
+[Sharding](../../09.%20High%20Level%20Design.md#Sharding)
 
 # The core idea
 A single node has three hard ceilings: storage (disks fill up), write throughput (one primary absorbs only so many writes per second), and memory (the working set stops fitting in RAM).
@@ -14,7 +14,7 @@ Instead of storing everything on every node, choose a **partition key** and stor
 
 **Hash partitioning** spreads load evenly by hashing the key, at the cost of range scans, since adjacent keys land on different nodes. This is the default for key-value workloads.
 
-**[Consistence Hashing](../../System%20Design/10.%20Consistence%20Hashing.md)** fixes the resizing trap. Plain `hash(key) mod N` remaps almost every key when N changes. Consistent hashing places nodes and keys on a ring so adding or removing a node moves only about 1/N of the keys, and virtual nodes smooth out load imbalance.
+**[Consistence Hashing](../../10.%20Consistence%20Hashing.md)** fixes the resizing trap. Plain `hash(key) mod N` remaps almost every key when N changes. Consistent hashing places nodes and keys on a ring so adding or removing a node moves only about 1/N of the keys, and virtual nodes smooth out load imbalance.
 
 **Directory-based partitioning** maps key to partition through an explicit lookup service. Maximum flexibility (move any tenant anywhere), at the cost of the directory becoming a critical dependency that itself must be cached, replicated, and kept consistent.
 

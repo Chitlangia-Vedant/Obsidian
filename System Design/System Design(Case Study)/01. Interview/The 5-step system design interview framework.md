@@ -104,7 +104,7 @@ Because our system does not require the server to independently send or push dat
 
 Below we can mock some of our REST APIs mapped from our functional requirements.
 
-![](<../../Attachment Folder/Pasted image 20261024061014.png>)
+![](<../../../Attachment Folder/Pasted image 20261024061014.png>)
 ## Design your data model
 
 What data do we need to store in our database and how do we store it?
@@ -134,7 +134,7 @@ Back-end services will perform a JOIN operation on the followers and photo table
 
 The Instagram product relies heavily on the relation between these data types to support fetching user feeds. A common query would be to fetch all photos for a group of (followed) users. Because of this, it would make sense to use a SQL Database to host our data models.
 
-![](<../../Attachment Folder/Pasted image 20261024061417.png>)
+![](<../../../Attachment Folder/Pasted image 20261024061417.png>)
 
 ## Create a high-level design diagram
 The diagram should act as a blueprint of our design and highlight the most critical pieces to fulfill the functional requirements.
@@ -149,7 +149,7 @@ The system below incorporates the following workflows:
 2. **Users can follow other users:** similar to above, the write app server will process follow requests and write the relation to the Follows table in the database.
 3. **Users can view a feed of images:** In this work-stream the user issues a request to the Read App server which will query the Database for all posts belonging to the users they follow.
 
-![](<../../Attachment Folder/Pasted image 20261024061948.png>)
+![](<../../../Attachment Folder/Pasted image 20261024061948.png>)
 At this point all the functional requirements should be met. Moving forward, we can identify points of weakness in the current system and how we can address them alongside our non-functional requirements.
 
 # Step 3: Deep-dive into the design

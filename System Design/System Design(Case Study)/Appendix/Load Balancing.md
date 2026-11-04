@@ -1,5 +1,5 @@
 A _load balancer_ is a type of server that distributes incoming web traffic across multiple backend servers.
-![](<../../Attachment Folder/Pasted image 20261027013832.png>)
+![](<../../../Attachment Folder/Pasted image 20261027013832.png>)
 
 # How load balancers work
 A good load balancer will efficiently distribute incoming traffic to maximize the system's capacity utilization and minimize the queueing time. Load balancers can distribute traffic using several different strategies:

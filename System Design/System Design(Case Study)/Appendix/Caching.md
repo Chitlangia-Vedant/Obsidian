@@ -7,13 +7,13 @@ Caching can be implemented in many different ways in modern systems:
 
 **Distributed in-memory cache.** A separate caching server such as Memcached or Redis can be used to store data so that multiple servers can read and write from the same cache.
 
-![](<../../Attachment Folder/Pasted image 20261103161354.png>)
+![](<../../../Attachment Folder/Pasted image 20261103161354.png>)
 
 **Database cache.** A traditional database can still be used to cache commonly requested data or store the results of pre-computed operations for retrieval later.
 
 **File system cache.** A file system can also be used to store commonly accessed files; CDNs are one example of a distributed file system that take advantage of geographic locality.
 
-![](<../../Attachment Folder/Pasted image 20261103161402.png>)
+![](<../../../Attachment Folder/Pasted image 20261103161402.png>)
 # Caching policies
 Since caching is meant to be fast and temporary, it is often implemented with more expensive and less resilient hardware than other types of storage. 
 For this reason, caches are typically smaller than the primary data storage system and must selectively choose which data to keep and which to remove (or _evict_). 
