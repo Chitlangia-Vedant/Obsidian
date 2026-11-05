@@ -30,7 +30,7 @@ The most common request methods are:
 
 REST APIs access _resources_ through URLs, just like the URLs in your browser. The URLs are accompanied by a method that specifies how you want to interact with the resource.
 
-![](<../../../Attachment Folder/Pasted image 20261103161507.png>)
+![](<../Attachments/Pasted image 20261103161507.png>)
 
 REST APIs focus on _resources_ rather than database entries.
 # Other popular APIs
@@ -133,7 +133,7 @@ Although APIs offer security to the systems on either end, they are susceptible 
 
 An API gateway is a reverse proxy that acts as a single entry point for microservices and back-end APIs.
 
-![](<../../../Attachment Folder/Pasted image 20261103161526.png>)
+![](<../Attachments/Pasted image 20261103161526.png>)
 
 All client requests are routed to the gateway, which directs them accordingly—to the API if it is available, or redirected if the request fails to meet security standards.
 

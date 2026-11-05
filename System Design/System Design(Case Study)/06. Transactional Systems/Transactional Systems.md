@@ -11,7 +11,7 @@ graph LR
 ```
 The booking service claims inventory atomically before charging anyone, an external payment provider runs while the hold protects the seat, and a sweeper reclaims holds that expire.
 # The core idea
-The browsing path may use caching, replicas, and eventual consistency from [Read Heavy System](../02.%20Read%20Heavy%20System/01.%20Read%20Heavy%20System.md). The claim path cannot rely on a stale inventory count because two buyers may both see the last seat as available.
+The browsing path may use caching, replicas, and eventual consistency from [Read Heavy System](<../02. Read Heavy System/01. Read Heavy System.md>). The claim path cannot rely on a stale inventory count because two buyers may both see the last seat as available.
 
 The failure we're defending against is a **race condition**: two requests interleave in time and produce a result that neither would produce on its own. The specific form here is **read-check-write**. Request A reads "seat available," request B reads "seat available," both pass the check, and both write "sold." Neither request is wrong in isolation. The bug exists only because they overlapped.
 
@@ -62,15 +62,15 @@ The workflow also needs four protections:
 
 - **Idempotency everywhere.** The user double-clicks, your payment call times out and retries, the provider's webhook arrives twice. Every step has to be safe to repeat: idempotency keys on the charge, upsert-style confirmation keyed by reservation ID, and deduplication on webhook event IDs.
 - **The ambiguous timeout.** A payment call that times out may still have succeeded. Query the provider by idempotency key, or wait for its webhook, before deciding what happened. Make the hold long enough to cover that resolution window.
-- **Reliable state transitions.** Confirming the booking and publishing a `BookingConfirmed` event must not diverge, which is the outbox pattern from [Event-Driven and Pub-Sub Architectures](../03.%20Event-Driven%20and%20Pub-Sub%20Architectures/Event-Driven%20and%20Pub-Sub%20Architectures.md).
+- **Reliable state transitions.** Confirming the booking and publishing a `BookingConfirmed` event must not diverge, which is the outbox pattern from [Event-Driven and Pub-Sub Architectures](<../03. Event-Driven and Pub-Sub Architectures/Event-Driven and Pub-Sub Architectures.md>).
 - **Crash recovery.** If the orchestrating service dies between steps, something has to resume or unwind the workflow. Keep a durable row per order holding its saga state, advanced by idempotent steps, so one place owns the order's state machine. Engines like Temporal or Step Functions do this for you.
 
 # Surviving the rush
 A stadium on-sale concentrates a burst of traffic onto a few thousand rows. Combine four defenses:
 
 - **A virtual waiting room** admits users into checkout at a controlled rate. This converts an overload problem into a fairness problem, which is a much better problem to have.
-- **Serve the seat map from cache, but decide at the source of truth.** The map thousands of people are staring at can be a few seconds stale, while the claim is always an atomic write against the authoritative store. Push seat-taken updates to viewers asynchronously ([Real-Time and Collaborative Systems](../08.%20Real-Time%20and%20Collaborative%20Systems/Real-Time%20and%20Collaborative%20Systems.md)).
-- **Partition by event** ([Partitioned and Distributed Storage](../05.%20Partitioned%20and%20Distributed%20Storage/Partitioned%20and%20Distributed%20Storage.md)) so one on-sale can't take down the rest of the platform, and each claim stays inside a single partition.
+- **Serve the seat map from cache, but decide at the source of truth.** The map thousands of people are staring at can be a few seconds stale, while the claim is always an atomic write against the authoritative store. Push seat-taken updates to viewers asynchronously ([Real-Time and Collaborative Systems](<../08. Real-Time and Collaborative Systems/Real-Time and Collaborative Systems.md>)).
+- **Partition by event** ([Partitioned and Distributed Storage](<../05. Partitioned and Distributed Storage/Partitioned and Distributed Storage.md>)) so one on-sale can't take down the rest of the platform, and each claim stays inside a single partition.
 - **Prefer counted inventory where the product allows it.** General-admission tickets are one shardable counter; reserved seating spreads contention across seat rows naturally.
 ### Overselling on purpose
 

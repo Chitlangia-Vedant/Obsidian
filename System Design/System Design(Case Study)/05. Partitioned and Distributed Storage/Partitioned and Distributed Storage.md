@@ -2,7 +2,7 @@ When a dataset becomes too large or write-heavy for one machine, how do we add c
 
 Distribution gives us storage and write throughput, but makes cross-key queries, multi-key transactions, and operations more expensive.
 
-[Sharding](../../09.%20High%20Level%20Design.md#Sharding)
+[Sharding](<../../09. High Level Design.md#Sharding>)
 
 # The core idea
 A single node has three hard ceilings: storage (disks fill up), write throughput (one primary absorbs only so many writes per second), and memory (the working set stops fitting in RAM).
@@ -14,7 +14,7 @@ Instead of storing everything on every node, choose a **partition key** and stor
 
 **Hash partitioning** spreads load evenly by hashing the key, at the cost of range scans, since adjacent keys land on different nodes. This is the default for key-value workloads.
 
-**[Consistence Hashing](../../10.%20Consistence%20Hashing.md)** fixes the resizing trap. Plain `hash(key) mod N` remaps almost every key when N changes. Consistent hashing places nodes and keys on a ring so adding or removing a node moves only about 1/N of the keys, and virtual nodes smooth out load imbalance.
+**[Consistence Hashing](<../../10. Consistence Hashing.md>)** fixes the resizing trap. Plain `hash(key) mod N` remaps almost every key when N changes. Consistent hashing places nodes and keys on a ring so adding or removing a node moves only about 1/N of the keys, and virtual nodes smooth out load imbalance.
 
 **Directory-based partitioning** maps key to partition through an explicit lookup service. Maximum flexibility (move any tenant anywhere), at the cost of the directory becoming a critical dependency that itself must be cached, replicated, and kept consistent.
 
@@ -73,8 +73,8 @@ Even a perfect hash cannot spread traffic for one extremely popular key. A celeb
 Once data lives on more than one node, a set of operations that used to be free stop being free:
 
 - **Secondary indexes** come in two flavors. A _local_ index keeps writes inside one partition, but queries have to scatter-gather across every partition. A _global_ index sends queries to one place, but every write touches two partitions and the index is usually eventually consistent. Say which one you're choosing.
-- **Joins and multi-key transactions** across partitions require moving data or coordinating with two-phase commit or a saga ([Transactional Systems](../06.%20Transactional%20Systems/Transactional%20Systems.md)). Choose a partition key that keeps common transactions local. In a booking system, partitioning by `event_id` keeps all seat holds for one concert together.
-- **Aggregations** turn into scatter-gather queries or precomputed pipelines ([Batch Processing and Data Pipelines](../07.%20Batch%20Processing%20and%20Data%20Pipelines/Batch%20Processing%20and%20Data%20Pipelines.md)).
+- **Joins and multi-key transactions** across partitions require moving data or coordinating with two-phase commit or a saga ([Transactional Systems](<../06. Transactional Systems/Transactional Systems.md>)). Choose a partition key that keeps common transactions local. In a booking system, partitioning by `event_id` keeps all seat holds for one concert together.
+- **Aggregations** turn into scatter-gather queries or precomputed pipelines ([Batch Processing and Data Pipelines](<../07. Batch Processing and Data Pipelines/Batch Processing and Data Pipelines.md>)).
 - **Not every large dataset needs this at all.** Blobs, media, and backups belong in object storage, which handles distribution for you.
 
 # When to use it, and when not to

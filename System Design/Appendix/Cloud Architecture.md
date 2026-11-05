@@ -47,7 +47,7 @@ It's an instance of a clever tactic called **Infrastructure as Code**. The idea 
 
 Kubernetes, a **container orchestration platform**, manages upper-layer resources. Building containerized applications has several advantages - each container is isolated from one another, making development, scaling, and maintenance all relatively simple. But as you can imagine, managing a large network of containers can be challenging. Kubernetes treats groups of containers as clusters, and manages the different workflows required by each cluster as needed.
 
-![](<../../../Attachment Folder/Pasted image 20261104135346.png>)
+![](<../Attachments/Pasted image 20261104135346.png>)
 
 # How companies switch from on-premise to cloud-based hosting
 

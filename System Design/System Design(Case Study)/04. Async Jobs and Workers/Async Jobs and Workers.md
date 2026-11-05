@@ -10,7 +10,7 @@ Instead of finishing the work before responding, persist the user's intent and m
 # How this relates to event-driven systems
 These two patterns look nearly identical on a whiteboard. Both put a queue between a producer and a pool of consumers, both run work outside the request path, and both need retries, idempotency, and a dead-letter path. In practice they often run on the same broker.
 
-The difference is what the message means. In [event-driven systems](../03.%20Event-Driven%20and%20Pub-Sub%20Architectures/Event-Driven%20and%20Pub-Sub%20Architectures.md) the unit is an **event**, a statement of fact like `FileUploaded`, broadcast to whoever cares. Here the unit is a **job**, an instruction to do a specific piece of work like `process_uploaded_file`, addressed to whoever is free. An event says something happened; a job says something needs doing
+The difference is what the message means. In [event-driven systems](<../03. Event-Driven and Pub-Sub Architectures/Event-Driven and Pub-Sub Architectures.md>) the unit is an **event**, a statement of fact like `FileUploaded`, broadcast to whoever cares. Here the unit is a **job**, an instruction to do a specific piece of work like `process_uploaded_file`, addressed to whoever is free. An event says something happened; a job says something needs doing
 
 That shapes what each pattern worries about. Event-driven design is mostly concerned with communication between services: who subscribes, how the schema evolves, whether ordering holds. Async job design is mostly concerned with execution: tracking a job's state, keeping it alive when a worker dies, bounding retries, and scaling the fleet.
 

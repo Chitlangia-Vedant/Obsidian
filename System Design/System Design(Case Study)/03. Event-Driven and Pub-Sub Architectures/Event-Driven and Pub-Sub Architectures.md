@@ -2,7 +2,7 @@ When a customer places an order at a store like Amazon, how do payment, inventor
 The answer is an **event-driven system**, where a service announces what happened and other services respond independently.
 
 The Order Service publishes an event such as `OrderCreated`, and every subscriber receives its own copy. The publisher does not wait for those services or even need to know they exist.
-[18. Messaging Queue & Kafka](../../18.%20Messaging%20Queue%20&%20Kafka.md)
+[18. Messaging Queue & Kafka](<../../18. Messaging Queue & Kafka.md>)
 # The core idea
 In a synchronous system, Service A calls Service B and waits. This is appropriate for simple request/response flows, but it couples their latency and availability. If B is slow or unavailable, A inherits the problem. As more services join the flow, A must know about every one, and the user's request stays open until the chain finishes.
 
@@ -21,7 +21,7 @@ Commands are instructions. Producers in pub/sub systems usually publish events, 
 A _queue_ distributes work among workers, and each message is usually processed by exactly one worker. Use it when work should happen once, such as sending one email or transcoding one video. 
 _Pub/sub_ broadcasts events to multiple independent subscribers, and each subscriber group gets its own copy. Use it when many systems must react to the same event. 
 
-The rule of thumb: queue when work is processed once, pub/sub when multiple systems react to the same fact. Reliable execution of the work itself is [Async Jobs and Workers](../04.%20Async%20Jobs%20and%20Workers/Async%20Jobs%20and%20Workers.md).
+The rule of thumb: queue when work is processed once, pub/sub when multiple systems react to the same fact. Reliable execution of the work itself is [Async Jobs and Workers](<../04. Async Jobs and Workers/Async Jobs and Workers.md>).
 
 # The dual-write problem and the outbox pattern
 Suppose the Order Service creates an order in its database, then crashes before publishing `OrderCreated`. The database says the order exists, but no downstream service will hear about it. This is the **dual-write problem**: the service writes to the database and broker without one shared transaction, so the two systems can diverge.
@@ -63,7 +63,7 @@ A poor partition key fails in one of two ways. Partition randomly and you lose t
 # Failure handling
 Failures are normal in async systems. A consumer can fail because a downstream database is unavailable, a payload is malformed, a dependency times out, or a deploy introduced a bug. A production-grade design includes retries for transient failures, exponential backoff so a broken dependency isn't hammered, **dead-letter queues (DLQs)** for messages that repeatedly fail, alerts when failure rates cross thresholds, replay tools to reprocess events after a fix, and consumer offsets to track progress.
 
-Define what happens _when processing fails_, not only how messages are sent. [Async Jobs and Workers](../04.%20Async%20Jobs%20and%20Workers/Async%20Jobs%20and%20Workers.md) covers error classification, backoff budgets, and DLQ replay in detail.
+Define what happens _when processing fails_, not only how messages are sent. [Async Jobs and Workers](<../04. Async Jobs and Workers/Async Jobs and Workers.md>) covers error classification, backoff budgets, and DLQ replay in detail.
 # Common pitfalls
 - **Publishing before the transaction commits.** Consumers react to something that never happened. This is exactly what the outbox prevents.
 - **Assuming exactly-once processing.** Most systems deliver at least once, so consumers have to be idempotent.
