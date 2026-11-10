@@ -3,7 +3,6 @@
 - [ ] Cardinality
 - [ ] Caching
 	- [x] CDN
-	- [ ] Tricks
 - [x] Kafka Terms
 - [x] RPC
 - [x] SAGA & CQRS
