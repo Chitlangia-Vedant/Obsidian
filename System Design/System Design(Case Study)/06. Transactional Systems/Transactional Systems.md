@@ -62,7 +62,7 @@ The workflow also needs four protections:
 
 - **Idempotency everywhere.** The user double-clicks, your payment call times out and retries, the provider's webhook arrives twice. Every step has to be safe to repeat: idempotency keys on the charge, upsert-style confirmation keyed by reservation ID, and deduplication on webhook event IDs.
 - **The ambiguous timeout.** A payment call that times out may still have succeeded. Query the provider by idempotency key, or wait for its webhook, before deciding what happened. Make the hold long enough to cover that resolution window.
-- **Reliable state transitions.** Confirming the booking and publishing a `BookingConfirmed` event must not diverge, which is the outbox pattern from [Event-Driven and Pub-Sub Architectures](<../03. Event-Driven and Pub-Sub Architectures/Event-Driven and Pub-Sub Architectures.md>).
+- **Reliable state transitions.** Confirming the booking and publishing a `BookingConfirmed` event must not diverge, which is the outbox pattern from [01. Event-Driven and Pub-Sub Architectures](<../03. Event-Driven and Pub-Sub Architectures/01. Event-Driven and Pub-Sub Architectures.md>).
 - **Crash recovery.** If the orchestrating service dies between steps, something has to resume or unwind the workflow. Keep a durable row per order holding its saga state, advanced by idempotent steps, so one place owns the order's state machine. Engines like Temporal or Step Functions do this for you.
 
 # Surviving the rush
