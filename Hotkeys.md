@@ -4,11 +4,14 @@
 
 4. Ctrl + B : **Bold**
 5. Ctrl + I : *Italic*
-6. Ctrl + Delete : Delete File
-7. Ctrl + O : Open File/Create New File
+6. Alt + U: <u>Underline</u>
+<center>7. Alt + C: Centre</center>
 
-8. Alt + \` : Open link in new hover editor
-9. Alt + (Scroll) : Resize Image
+8. Ctrl + Delete : Delete File
+9. Ctrl + O : Open File/Create New File
 
-10. $For Math Formula$
-11. ```For Code```
+10. Alt + \` : Open link in new hover editor
+11. Alt + (Scroll) : Resize Image
+
+12. $For Math Formula$
+13. ```For Code```

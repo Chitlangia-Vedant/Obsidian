@@ -7,6 +7,6 @@
 - [ ] Batch Processing and Data Pipelines
 - [ ] Agentic AI Architectures
 
-- [ ] CDC??
+- [ ] CDC : Change Data Capture
 # Java Springboot
 - [ ] Lambda
