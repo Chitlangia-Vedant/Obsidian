@@ -1,18 +1,14 @@
 1. Alt + B : Bullet List
 2. Alt + N : Numbered List
-3. Alt + S : Arrow symbol(→)
-4. Alt + I : Insert 
+3. Alt + I : Insert 
 
+4. Ctrl + B : **Bold**
+5. Ctrl + I : *Italic*
+6. Ctrl + Delete : Delete File
+7. Ctrl + O : Open File/Create New File
 
-5. Ctrl + B : **Bold**
-6. Ctrl + I : *Italic*
-7. Ctrl + Delete : Delete File
-8. Ctrl + O : Open File/Create New File
+8. Alt + \` : Open link in new hover editor
+9. Alt + (Scroll) : Resize Image
 
-
-9. Alt + \` : Open link in new hover editor
-10. Alt + (Scroll) : Resize Image
-
-
-11. $For Math Formula$
-12. ```For Code```
+10. $For Math Formula$
+11. ```For Code```

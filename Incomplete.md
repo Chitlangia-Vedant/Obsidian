@@ -7,5 +7,6 @@
 - [ ] Batch Processing and Data Pipelines
 - [ ] Agentic AI Architectures
 
+- [ ] CDC??
 # Java Springboot
 - [ ] Lambda
